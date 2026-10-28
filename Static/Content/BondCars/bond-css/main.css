@@ -1,0 +1,1838 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection declarations have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #424251;
+    color: #fff;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+
+/* ==========================================================================
+   Web fonts
+   ========================================================================== *
+
+@font-face{
+font-family:"Merriweather";
+src:url("../bond-fonts/618b8fa0-3ab0-481f-a92f-79eae9b1c8eb.eot?iefix") format("eot");}
+@font-face{
+font-family:"Merriweather";
+src:url("../bond-fonts/618b8fa0-3ab0-481f-a92f-79eae9b1c8eb.eot?iefix");
+src:url("../bond-fonts/46d0af3b-0a73-452c-96d4-1e09781d6fba.woff") format("woff"),url("../bond-fonts/44e2c17b-8e02-47fb-80ed-8e05498e4c2d.ttf") format("truetype"),url("../bond-fonts/45343f86-81ed-4799-911d-404b8eb847d5.svg#45343f86-81ed-4799-911d-404b8eb847d5") format("svg");
+}
+@font-face{
+font-family:"Montserrat";
+src:url("../bond-fonts/9682bb7d-efd6-4254-8771-e146c89a72d4.eot?iefix") format("eot");}
+@font-face{
+font-family:"Montserrat";
+src:url("../bond-fonts/9682bb7d-efd6-4254-8771-e146c89a72d4.eot?iefix");
+src:url("../bond-fonts/a3a867b8-141c-4865-9f8d-6dc5766a6bc5.woff") format("woff"),url("../bond-fonts/b9d6d5ca-ba9b-4fa1-a81e-366891676e4a.ttf") format("truetype"),url("../bond-fonts/844c48e5-7a2b-488b-9e47-ff8dda98e5e2.svg#844c48e5-7a2b-488b-9e47-ff8dda98e5e2") format("svg");
+}
+@font-face{
+font-family:"Montserrat";
+src:url("../bond-fonts/40b18343-f287-42bc-a93d-3d2ce419f8e4.eot?iefix") format("eot");}
+@font-face{
+font-family:"Montserrat";
+src:url("../bond-fonts/40b18343-f287-42bc-a93d-3d2ce419f8e4.eot?iefix");
+src:url("../bond-fonts/e33f2c3e-1652-4366-a060-49534a5c9cc7.woff") format("woff"),url("../bond-fonts/a61b629e-6ed5-4647-8f5b-7479d1ae9ddb.ttf") format("truetype"),url("../bond-fonts/43852b29-fe22-4990-89f2-9a0040038171.svg#43852b29-fe22-4990-89f2-9a0040038171") format("svg");
+}
+
+*/
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+h1,h2,h3,h4,h5,p {
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    width: 100%;
+    height: 100%;
+    /*overflow-x: hidden;*/
+    font-size: 100%;
+    font-family:'Merriweather';
+	background: #6A3E3D url('/Static/Content/BondCars/bond-img/ajax-loader.gif') no-repeat center center;
+}
+a, a:focus  {
+    color: #fff;
+    outline: 0;
+	text-decoration: none;
+}
+input {
+    font-size: 100%;
+    font-family:'Merriweather';
+    border: 0;
+    padding: 0 3%;
+    line-height: 3em;
+	color: #222;
+    background: #fff;
+}
+.body-wrap {
+    position: relative;
+    min-height: 674px;
+    overflow: hidden;
+}
+.js .body-wrap {
+	min-width: 320px;
+}
+
+/*---------------------------------
+ *
+ *   Footer
+ *
+ *-------------------------------*/
+.app-footer {
+    width: 91%;
+    height: 4em;
+    position: fixed;
+    bottom: 0;
+    left: 4%;
+    z-index: 3;
+    overflow: hidden;
+    border-top: 1px solid #fff;
+    color: #fff;
+}
+.brand-name {
+    width: 169px;
+    height: 70px;
+	margin-top: 2em;
+    float: left;
+    font-size: 1.8em;
+    font-family: Arial;
+    white-space: nowrap;
+    background: url('/Static/Content/BondCars/bond-img/evans-halshaw-logo.png') no-repeat left center;
+    background-size: 100%;
+    font: 0/0 a;
+}
+
+.final-bond {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 50%;
+}
+
+/*---------------------------------
+ *
+ *   Cars Layer
+ *
+ *-------------------------------*/
+.cars-layer {
+    position: fixed;
+    z-index: 1;
+    background: #6A3E3D;
+}
+.cars-layer ul {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.car {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+	display: none;
+}
+.car.active, .car.adjacent {
+	display: block;
+}
+.circle-mask {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    font: 0/0 a;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+.date, 
+.illustration, 
+.part1, 
+.part2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 1;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 50%;
+    /*-moz-transition: 0.4s 0s;*/
+}
+.name, 
+.description, 
+.film-title {
+    position: fixed;
+    display: block;
+    z-index: 2;
+    color: #fff;
+    font-size: 2em;
+    font-family:'Merriweather';
+}
+.name, 
+.film-title {
+    width: 85%;
+}
+.name {
+    white-space: nowrap;
+    top: 1em;
+    left: 4%;
+}
+.description {
+    bottom: 1em;
+    right: 5%;
+	margin-left: 265px;
+    text-align: right;
+    font-size: 1.1em;
+	line-height: 1em;
+}
+.film-title {
+    top: 2em;
+    left: 4%;
+}
+
+/*---------------------------------
+ *
+ *   Indiviual Cars 
+ *
+ *-------------------------------*/
+.c1	                { z-index: 25;}
+.c1 .name, 
+.c1 .description    { color: rgb(107,196,202); }
+.c1 .circle-mask    { background-color: rgb(106,62,61); }
+.c1 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c1-illustration-bodywork.png'); }
+.c1 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c1-date.png'); }
+
+.c2	                { z-index: 24;}
+.c2 .name, 
+.c2 .description    { color: rgb(51,60,77); }
+.c2 .circle-mask    { background-color: rgb(107,196,202); }
+.c2 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c2-illustration-bodywork.png'); }
+.c2 .part1          { background-image: url('/Static/Content/BondCars/bond-img/cars/c2-part1.png'); }
+.c2 .part2          { background-image: url('/Static/Content/BondCars/bond-img/cars/c2-part2.png'); }
+.c2 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c2-date.png'); }
+
+.c3	                { z-index: 23;}
+.c3 .name, 
+.c3 .description    { color: rgb(11,243,151); }
+.c3 .circle-mask    { background-color: rgb(51,60,77); }
+.c3 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c3-illustration-bodywork.png'); }
+.c3 .part1          { background-image: url('/Static/Content/BondCars/bond-img/cars/c3-part1.png'); }
+.c3 .part2          { background-image: url('/Static/Content/BondCars/bond-img/cars/c3-part2.png'); }
+.c3 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c3-date.png'); }
+
+.c4	                { z-index: 22;}
+.c4 .name, 
+.c4 .description    { color: rgb(48,34,49); }
+.c4 .circle-mask    { background-color: rgb(11,243,151); }
+.c4 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c4-illustration-bodywork.png'); }
+.c4 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c4-date.png'); }
+
+.c5	                { z-index: 21;}
+.c5 .name, 
+.c5 .description    { color: rgb(182,93,135); }
+.c5 .circle-mask    { background-color: rgb(48,34,49); }
+.c5 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c5-illustration-bodywork.png'); }
+.c5 .part1          { background-image: url('/Static/Content/BondCars/bond-img/cars/c5-part1.png'); }
+.c5 .part2          { background-image: url('/Static/Content/BondCars/bond-img/cars/c5-part2.png'); }
+.c5 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c5-date.png'); }
+
+.c6	                { z-index: 20;}
+.c6 .name, 
+.c6 .description    { color: rgb(56,40,44); }
+.c6 .circle-mask    { background-color: rgb(182,93,135); }
+.c6 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c6-illustration-bodywork.png'); }
+.c6 .part1          { background-image: url('/Static/Content/BondCars/bond-img/cars/c6-part1.png'); }
+.c6 .part2          { background-image: url('/Static/Content/BondCars/bond-img/cars/c6-part2.png'); }
+.c6 .date           	{ background-image: url('/Static/Content/BondCars/bond-img/cars/c6-date.png'); }
+
+.c7	                { z-index: 19;}
+.c7 .name, 
+.c7 .description    { color: rgb(244,214,13); }
+.c7 .circle-mask    { background-color: rgb(56,40,44); }
+.c7 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c7-illustration-bodywork.png'); }
+.c7 .part1          { background-image: url('/Static/Content/BondCars/bond-img/cars/c7-part1.png'); }
+.c7 .part2          { background-image: url('/Static/Content/BondCars/bond-img/cars/c7-part2.png'); }
+.c7 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c7-date.png'); }
+
+.c8	                { z-index: 18;}
+.c8 .name, 
+.c8 .description    { color: rgb(42,43,57); }
+.c8 .circle-mask    { background-color: rgb(244,214,13); }
+.c8 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c8-illustration-bodywork.png'); }
+.c8 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c8-date.png'); }
+
+.c9	                { z-index: 17;}
+.c9 .name, 
+.c9 .description    { color: rgb(81,122,192); }
+.c9 .circle-mask    { background-color: rgb(42,43,57); }
+.c9 .illustration   { background-image: url('/Static/Content/BondCars/bond-img/cars/c9-illustration-bodywork.png'); }
+.c9 .date           { background-image: url('/Static/Content/BondCars/bond-img/cars/c9-date.png'); }
+
+.c10                { z-index: 16;}
+.c10 .name, 
+.c10 .description   { color: rgb(223,199,195); }
+.c10 .circle-mask   { background-color: rgb(81,122,192); }
+.c10 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c10-illustration-bodywork.png'); }
+.c10 .part1         { background-image: url('/Static/Content/BondCars/bond-img/cars/c10-part1.png'); }
+.c10 .part2         { background-image: url('/Static/Content/BondCars/bond-img/cars/c10-part2.png'); }
+.c10 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c10-date.png'); }
+
+.c11                { z-index: 15;}
+.c11 .name, 
+.c11 .description   { color: rgb(140,104,114); }
+.c11 .circle-mask   { background-color: rgb(223,199,195); }
+.c11 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c11-illustration-bodywork.png'); }
+.c11 .part1         { background-image: url('/Static/Content/BondCars/bond-img/cars/c11-part1.png'); }
+.c11 .part2         { background-image: url('/Static/Content/BondCars/bond-img/cars/c11-part2.png'); }
+.c11 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c11-date.png'); }
+
+.c12                { z-index: 14;}
+.c12 .name, 
+.c12 .description   { color: rgb(255,210,77); }
+.c12 .circle-mask   { background-color: rgb(140,104,114); }
+.c12 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c12-illustration-bodywork.png'); }
+.c12 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c12-date.png'); }
+
+.c13                { z-index: 13;}
+.c13 .name, 
+.c13 .description   { color: rgb(22,31,46); }
+.c13 .circle-mask   { background-color: rgb(255,210,77); }
+.c13 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c13-illustration-bodywork.png'); }
+.c13 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c13-date.png'); }
+
+.c14                { z-index: 12;}
+.c14 .name, 
+.c14 .description   { color: rgb(189,144,198); }
+.c14 .circle-mask   { background-color: rgb(22,31,46); }
+.c14 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c14-illustration-bodywork.png'); }
+.c14 .part1         { background-image: url('/Static/Content/BondCars/bond-img/cars/c14-part1.png'); }
+.c14 .part2         { background-image: url('/Static/Content/BondCars/bond-img/cars/c14-part2.png'); }
+.c14 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c14-date.png'); }
+
+.c15                { z-index: 11;}
+.c15 .name, 
+.c15 .description   { color: rgb(100,63,76); }
+.c15 .circle-mask   { background-color: rgb(189,144,198);}
+.c15 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c15-illustration-bodywork.png'); }
+.c15 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c15-date.png'); }
+
+.c16                { z-index: 10;}
+.c16 .name, 
+.c16 .description   { color: rgb(32,32,47); }
+.c16 .circle-mask   { background-color: rgb(100,63,76); }
+.c16 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c16-illustration-bodywork.png'); }
+.c16 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c16-date.png'); }
+
+.c17                { z-index: 9;}
+.c17 .name, 
+.c17 .description   { color: rgb(227,203,195); }
+.c17 .circle-mask   { background-color: rgb(32,32,47); }
+.c17 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c17-illustration-bodywork.png'); }
+.c17 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c17-date.png'); }
+
+.c18                { z-index: 8;}
+.c18 .name, 
+.c18 .description   { color: rgb(224,87,67); }
+.c18 .circle-mask   { background-color: rgb(227,203,195); }
+.c18 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c18-illustration-bodywork.png'); }
+.c18 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c18-date.png'); }
+
+.c19                { z-index: 7;}
+.c19 .name, 
+.c19 .description   { color: rgb(214,192,185); }
+.c19 .circle-mask   { background-color: rgb(224,87,67); }
+.c19 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c19-illustration-bodywork.png'); }
+.c19 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c19-date.png'); }
+
+.c20                { z-index: 6;}
+.c20 .name, 
+.c20 .description   { color: rgb(117,42,155); }
+.c20 .circle-mask   { background-color: rgb(214,192,185); }
+.c20 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c20-illustration-bodywork.png'); }
+.c20 .part1         { background-image: url('/Static/Content/BondCars/bond-img/cars/c20-part1.png'); }
+.c20 .part2         { background-image: url('/Static/Content/BondCars/bond-img/cars/c20-part2.png'); }
+.c20 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c20-date.png'); }
+
+.c21                { z-index: 5;}
+.c21 .name, 
+.c21 .description   { color: rgb(76,227,145); }
+.c21 .circle-mask   { background-color: rgb(117,42,155); }
+.c21 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c21-illustration-bodywork.png'); }
+.c21 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c21-date.png'); }
+
+.c22                { z-index: 5;}
+.c22 .name, 
+.c22 .description   { color: rgb(54,41,32); }
+.c22 .circle-mask   { background-color: rgb(76,227,145); }
+.c22 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c22-illustration-bodywork.png'); }
+.c22 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c22-date.png'); }
+
+.c23                { z-index: 4;}
+.c23 .name, 
+.c23 .description   { color: rgb(228,226,198); }
+.c23 .circle-mask   { background-color: rgb(54,41,32); }
+.c23 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c23-illustration-bodywork.png'); }
+.c23 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c23-date.png'); }
+
+.c24                { z-index: 3;}
+.c24 .name, 
+.c24 .description   { color: rgb(66,217,135); }
+.c24 .circle-mask   { background-color: rgb(228,226,198); }
+.c24 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c24-illustration-bodywork.png'); }
+.c24 .part1         { background-image: url('/Static/Content/BondCars/bond-img/cars/c24-part1.png'); }
+.c24 .part2         { background-image: url('/Static/Content/BondCars/bond-img/cars/c24-part2.png'); }
+.c24 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c24-date.png'); }
+
+.c25                { z-index: 2;}
+.c25 .name, 
+.c25 .description   { color: rgb(54,41,32); }
+.c25 .circle-mask   { background-color: rgb(66,217,135); }
+.c25 .illustration  { background-image: url('/Static/Content/BondCars/bond-img/cars/c25-illustration-bodywork.png'); }
+.c25 .date          { background-image: url('/Static/Content/BondCars/bond-img/cars/c25-date.png'); }
+
+.c26 {z-index: 1;}
+.c26 .name,
+.c26 .description { color: rgb(14,255,255); }
+.c26 .circle-mask {background-color: rgb(45,23,72); }
+.c26 .illustration {background-image: url('/Static/Content/BondCars/bond-img/cars/c26-illustration-bodywork.png'); }
+.c26 .date {background-image: url('/Static/Content/BondCars/bond-img/cars/c26-date.png'); }
+
+/*---------------------------------
+ *
+ *   Photo test
+ *
+ *-------------------------------*/
+.photo-test .cars-layer .car .illustration {
+    background-size: 0 0 !important;
+}
+.photo-test .cars-layer .car .date {
+    background-position: center calc(50% - 90px);
+}
+.photo-test .cars-layer .car .illustration::after {
+    content: "";
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    width: min(72vw, 1100px);
+    aspect-ratio: 16 / 9;
+    transform: translate(-50%, -50%);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 28px;
+}
+.photo-test .cars-layer .car:nth-child(3n+1) .illustration::after {
+    background-image: url('/Static/Content/BondCars/bond-img/test-photos/photo-1.jpg');
+}
+.photo-test .cars-layer .car:nth-child(3n+2) .illustration::after {
+    background-image: url('/Static/Content/BondCars/bond-img/test-photos/photo-2.jpg');
+}
+.photo-test .cars-layer .car:nth-child(3n) .illustration::after {
+    background-image: url('/Static/Content/BondCars/bond-img/test-photos/photo-3.jpg');
+}
+.photo-test .description {
+    position: absolute;
+    top: calc(58% + min(20.25vw, 309px) + 1.25rem);
+    bottom: auto;
+    left: 50%;
+    right: auto;
+    width: min(72vw, 1100px);
+    margin: 0;
+    transform: translateX(-50%);
+    text-align: center;
+}
+.photo-test .cars-layer .part1,
+.photo-test .cars-layer .part2,
+.photo-test .photo-mask-wrap,
+.photo-test .final-bond,
+.photo-test .c26 > .spiral {
+    display: none !important;
+}
+.photo-test .front-car {
+    background-image: url('/Static/Content/BondCars/bond-img/test-photos/photo-1.jpg');
+    background-position: center;
+    background-size: cover;
+}
+.photo-test .front-car img {
+    opacity: 0;
+}
+
+/*---------------------------------
+ *
+ *   Drag Reveal
+ *
+ *-------------------------------*/
+.photo-mask-wrap {
+    width: 1060px;
+    height: 580px;
+    z-index: 2;
+}
+.photo-mask {
+    width: 0px;
+    height: 580px;
+    overflow: hidden;
+}
+.photo {
+    width: 1060px;
+    height: 580px;
+    display: block;
+}
+.dragger {
+    position: absolute;
+    width: 118px;
+    height: 61px;
+    padding-top: 57px;
+    border-radius: 50%;
+    color: #181818;
+    line-height: 1em;
+    text-align: center;
+    background: #fff url('/Static/Content/BondCars/bond-img/cars/c1-drag.png') no-repeat center 25%;
+    border: 6px solid #fff;
+    cursor: pointer;
+    -webkit-transition: border-color 0.2s ease-out;
+	-moz-transition: border-color 0.2s ease-out;
+	-o-transition: border-color 0.2s ease-out;
+	transition: border-color 0.2s ease-out;
+}
+.dragger:active {
+    font: 0/0 a;
+    background-position: center center;
+    color: #38282C;
+    border-color: #fff;
+}
+
+.c6 .dragger { bottom: 130px; left:30px; }
+.c6 .dragger:hover { border-color: #38282C; }
+.c6 .dragger:active {
+    background-color: #38282C;
+    background-image: url('/Static/Content/BondCars/bond-img/cars/drag-hand.png');
+}
+
+.c21 .dragger { bottom: 130px; left:125px; background-image: url('/Static/Content/BondCars/bond-img/cars/c21-drag.png'); }
+.c21 .dragger:hover { border-color: #4CE391; }
+.c21 .dragger:active {
+    background-color: #4CE391;
+    background-image: url('/Static/Content/BondCars/bond-img/cars/drag-hand.png');
+}
+
+/*---------------------------------
+ *
+ *   Cars Navigation
+ *
+ *-------------------------------*/
+.cars-nav {
+    width: 60px;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: 0;
+    z-index: 2;
+}
+.cars-nav ul {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+}
+.cars-nav li {
+    height: 23px;
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    position: relative;
+}
+.cars-nav li:hover {
+    z-index: 2;
+    cursor: pointer;
+}
+.cars-nav li.current:hover {
+    cursor: default;
+}
+.cars-nav a {
+    width: 0px;
+    height: 0px;
+    border: 6px solid rgb(255,255,255);
+	opacity: 0.75;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 3;
+    font: 0/0 a;
+    border-radius: 50%;
+    background: #fff;
+    color: #eee;
+    text-decoration: none;
+    font: 0/0 a;
+	outline: 0;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.cars-nav .car-thumb {
+    width: 0;
+    height: 0;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+    margin-top: -5px;
+    margin-right: -2px;
+    z-index: 1;
+    background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: center center;
+    overflow: hidden;
+    border-radius: 50%;
+    -webkit-backface-visibility: hidden;
+    -webkit-transition: all 0.2s ease-out 0s;
+    -moz-transition: all 0.2s ease-out 0s;
+    -o-transition: all 0.2s ease-out 0s;
+    transition: all 0.2s ease-out 0s;
+}
+.cars-nav li:hover a {
+    width: 8px;
+    height: 8px;
+	top: -4px;
+	left: 0px;
+	opacity: 1;
+    background: transparent;
+}
+.cars-nav li:hover .car-thumb {
+    width: 133px;
+    height: 133px;
+    right: 36px;
+    margin-top: -67px;
+    cursor: pointer;
+	-webkit-transition-delay: 0.2s;
+	-moz-transition-delay: 0.2s;
+	-o-transition-delay: 0.2s;
+	transition-delay: 0.2s;
+}
+
+.cars-nav .c1 .car-thumb { background-color: rgb(105,62,62);        background-image: url('/Static/Content/BondCars/bond-img/cars/c1-thumb.png'); }   
+.cars-nav .c2 .car-thumb { background-color: rgb(107,196,202); 	    background-image: url('/Static/Content/BondCars/bond-img/cars/c2-thumb.png'); }   
+.cars-nav .c3 .car-thumb { background-color: rgb(51,60,77);         background-image: url('/Static/Content/BondCars/bond-img/cars/c3-thumb.png'); }   
+.cars-nav .c4 .car-thumb { background-color: rgb(11,243,151);       background-image: url('/Static/Content/BondCars/bond-img/cars/c4-thumb.png'); }   
+.cars-nav .c5 .car-thumb { background-color: rgb(48,34,49); 		background-image: url('/Static/Content/BondCars/bond-img/cars/c5-thumb.png'); }   
+.cars-nav .c6 .car-thumb { background-color: rgb(182,93,135);		background-image: url('/Static/Content/BondCars/bond-img/cars/c6-thumb.png'); }   
+.cars-nav .c7 .car-thumb { background-color: rgb(56,40,44);         background-image: url('/Static/Content/BondCars/bond-img/cars/c7-thumb.png'); }   
+.cars-nav .c8 .car-thumb { background-color: rgb(244,214,13);		background-image: url('/Static/Content/BondCars/bond-img/cars/c8-thumb.png'); }   
+.cars-nav .c9 .car-thumb { background-color: rgb(42,43,57);         background-image: url('/Static/Content/BondCars/bond-img/cars/c9-thumb.png'); }   
+.cars-nav .c10 .car-thumb { background-color: rgb(81,122,192);      background-image: url('/Static/Content/BondCars/bond-img/cars/c10-thumb.png'); }  
+.cars-nav .c11 .car-thumb { background-color: rgb(223,199,195);     background-image: url('/Static/Content/BondCars/bond-img/cars/c11-thumb.png'); }  
+.cars-nav .c12 .car-thumb { background-color: rgb(140,104,114);	    background-image: url('/Static/Content/BondCars/bond-img/cars/c12-thumb.png'); }  
+.cars-nav .c13 .car-thumb { background-color: rgb(255,210,77);      background-image: url('/Static/Content/BondCars/bond-img/cars/c13-thumb.png'); }  
+.cars-nav .c14 .car-thumb { background-color: rgb(22,31,46);		background-image: url('/Static/Content/BondCars/bond-img/cars/c14-thumb.png'); }  
+.cars-nav .c15 .car-thumb { background-color: rgb(189,144,198);     background-image: url('/Static/Content/BondCars/bond-img/cars/c15-thumb.png'); }  
+.cars-nav .c16 .car-thumb { background-color: rgb(100,63,76);		background-image: url('/Static/Content/BondCars/bond-img/cars/c16-thumb.png'); }  
+.cars-nav .c17 .car-thumb { background-color: rgb(32,32,47);		background-image: url('/Static/Content/BondCars/bond-img/cars/c17-thumb.png'); }  
+.cars-nav .c18 .car-thumb { background-color: rgb(227,203,195);     background-image: url('/Static/Content/BondCars/bond-img/cars/c18-thumb.png'); }  
+.cars-nav .c19 .car-thumb { background-color: rgb(224,87,67);		background-image: url('/Static/Content/BondCars/bond-img/cars/c19-thumb.png'); }  
+.cars-nav .c20 .car-thumb { background-color: rgb(214,192,185);     background-image: url('/Static/Content/BondCars/bond-img/cars/c20-thumb.png'); }  
+.cars-nav .c21 .car-thumb { background-color: rgb(117,42,155);      background-image: url('/Static/Content/BondCars/bond-img/cars/c21-thumb.png'); }  
+.cars-nav .c22 .car-thumb { background-color: rgb(76,227,145);      background-image: url('/Static/Content/BondCars/bond-img/cars/c22-thumb.png'); }  
+.cars-nav .c23 .car-thumb { background-color: rgb(54,41,32);        background-image: url('/Static/Content/BondCars/bond-img/cars/c23-thumb.png'); }  
+.cars-nav .c24 .car-thumb { background-color: rgb(228,226,198);     background-image: url('/Static/Content/BondCars/bond-img/cars/c24-thumb.png'); }  
+.cars-nav .c25 .car-thumb { background-color: rgb(66,217,135);     background-image: url('/Static/Content/BondCars/bond-img/cars/c25-thumb.png'); }  
+.cars-nav .c26 .car-thumb { background-color: rgb(45,23,72);     background-image: url('/Static/Content/BondCars/bond-img/cars/c26-thumb.png'); }  
+
+.cars-nav .c1:hover a { border-color: rgb(105,62,62); }
+.cars-nav .c2:hover a { border-color: rgb(107,196,202); }
+.cars-nav .c3:hover a { border-color: rgb(51,60,77); }
+.cars-nav .c4:hover a { border-color: rgb(11,243,151); }
+.cars-nav .c5:hover a { border-color: rgb(48,34,49); }
+.cars-nav .c6:hover a { border-color: rgb(182,93,135); }
+.cars-nav .c7:hover a { border-color: rgb(56,40,44); }
+.cars-nav .c8:hover a { border-color: rgb(244,214,13); }
+.cars-nav .c9:hover a { border-color: rgb(42,43,57); }
+.cars-nav .c10:hover a { border-color: rgb(81,122,192); }
+.cars-nav .c11:hover a { border-color: rgb(223,199,195); }
+.cars-nav .c12:hover a { border-color: rgb(140,104,114); }
+.cars-nav .c13:hover a { border-color: rgb(255,210,77); }
+.cars-nav .c14:hover a { border-color: rgb(22,31,46); }
+.cars-nav .c15:hover a { border-color: rgb(189,144,198); }
+.cars-nav .c16:hover a { border-color: rgb(100,63,76); }
+.cars-nav .c17:hover a { border-color: rgb(32,32,47); }
+.cars-nav .c18:hover a { border-color: rgb(227,203,195); }
+.cars-nav .c19:hover a { border-color: rgb(224,87,67); }
+.cars-nav .c20:hover a { border-color: rgb(214,192,185); }
+.cars-nav .c21:hover a { border-color: rgb(117,42,155); }
+.cars-nav .c22:hover a { border-color: rgb(76,227,145); }
+.cars-nav .c23:hover a { border-color: rgb(54,41,32); }
+.cars-nav .c24:hover a { border-color: rgb(228,226,198); }
+.cars-nav .c25:hover a { border-color: rgb(66,217,135); }
+.cars-nav .c26:hover a { border-color: rgb(45,23,72); }
+
+/* current <a> selection */
+.cars-nav li.current a {
+    width: 8px;
+    height: 8px;
+	top: -4px;
+    background: transparent;
+	opacity: 1;
+    cursor: default;
+    border-color: yellow;
+}
+.cars-nav li.current span {
+    display: none !important;
+}
+
+.cars-nav .c1.current a { border-color: rgb(107,196,202); }
+.cars-nav .c2.current a { border-color: rgb(51,60,77); }
+.cars-nav .c3.current a { border-color: rgb(11,243,151); }
+.cars-nav .c4.current a { border-color: rgb(48,34,49); }
+.cars-nav .c5.current a { border-color: rgb(148,75,110); }
+.cars-nav .c6.current a { border-color: rgb(56,40,44); }
+.cars-nav .c7.current a { border-color: rgb(244,214,13); }
+.cars-nav .c8.current a { border-color: rgb(42,43,57); }
+.cars-nav .c9.current a { border-color: rgb(81,122,192); }
+.cars-nav .c10.current a { border-color: rgb(223,199,195); }
+.cars-nav .c11.current a { border-color: rgb(140,104,114); }
+.cars-nav .c12.current a { border-color: rgb(255,210,77); }
+.cars-nav .c13.current a { border-color: rgb(22,31,46); }
+.cars-nav .c14.current a { border-color: rgb(189,144,198); }
+.cars-nav .c15.current a { border-color: rgb(100,63,76); }
+.cars-nav .c16.current a { border-color: rgb(32,32,47); }
+.cars-nav .c17.current a { border-color: rgb(227,203,195); }
+.cars-nav .c18.current a { border-color: rgb(224,87,67); }
+.cars-nav .c19.current a { border-color: rgb(214,192,185); }
+.cars-nav .c20.current a { border-color: rgb(117,42,155); }
+.cars-nav .c21.current a { border-color: rgb(76,227,145); }
+.cars-nav .c22.current a { border-color: rgb(54,41,32); }
+.cars-nav .c23.current a { border-color: rgb(228,226,198); }
+.cars-nav .c24.current a { border-color: rgb(53,144,201); }
+.cars-nav .c25.current a { border-color: rgb(54,41,32); }
+.cars-nav .c26.current a {border-color: rgb(14,255,255);} 
+
+
+
+/* ==========================================================================
+   Start / Final Page
+   ========================================================================== */
+.spiral {
+    width: 100%;
+    height: 100%;
+}
+.front-page-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    overflow: hidden;
+}
+.front-page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99;
+}
+.front-page .spiral {
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    left: -50%;
+    top: -50%;
+    z-index: -1;
+    background: url('/Static/Content/BondCars/bond-img/start-spiral.gif') no-repeat center center;
+}
+.front-page h1 {
+    min-width: 700px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -315px;
+    margin-top: -105px;
+    font-family:"Montserrat";
+    font-size: 220px;
+    line-height: 200px;
+    color: #fff;
+    white-space: nowrap;
+}
+.front-page span {
+    display: block;
+    float: left;
+}
+span.b {
+    margin-left: -10px;
+    margin-right: 20px;
+}
+span.n {
+    margin-left: -5px;
+}
+span.d {
+    margin-left: -16px;
+}
+.home-copy-wrap {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 380px;
+    margin-left: 62px;
+    margin-top: 80px;
+    padding-bottom: 70px;
+}
+.home-copy-wrap h2 {
+    margin: 0.9em 0 0.3em;
+    font-size: 32px;
+    font-family:"Montserrat";
+    line-height: 28px;
+    color: rgb(227,202,210);
+    text-transform: uppercase;
+}
+.home-copy-wrap p {
+    color: #fff;
+    font-size: 1em;
+    line-height: 1.4em;
+}
+.home-copy-wrap a {
+    position: absolute;
+    bottom: 0;
+    left: -0.8em;
+    padding: 0.4em 1em;
+    font-size: 1.2em;
+    color: #454551;
+    background: rgb(227,202,210);
+    border-radius: 40px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.home-copy-wrap a:hover {
+    background: #ffffff;
+}
+.front-car {
+    width: 211px;
+    height: 211px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -168px;
+    margin-top: -116px;
+    border: 3px solid #7E5555;
+    border-radius: 50%;
+    background: #E3CAD2;
+    background-size: 100%;
+    cursor: pointer;
+    -webkit-transition: 0.2s ease-in;
+}
+.front-car img {
+    max-width: 100%;
+}
+.front-car:hover {
+    background: rgb(106,62,61); /*#7E5555;*/
+    border: 3px solid rgb(106,62,61);
+}
+
+.final-page {
+    width: 100%;
+    height: 100%;
+    background: rgb(66,217,135);
+    z-index: 1;
+}
+
+
+/* ==========================================================================
+   Author's Helper classes
+   ========================================================================== */
+.abs-centered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.no-animation {
+    -webkit-transition: 0s !important;
+	-moz-transition: 0s !important;
+	-o-transition: 0s !important;
+	transition: 0s !important;
+}
+
+.nopacity {
+	opacity: 0 !important;
+}
+.mobile-only {
+    display: none;
+}
+
+#scrollY {
+    position: fixed;
+    left: 4%;
+    bottom: 64px;
+    padding: 0.5em 1em;
+    font-size: 2em;
+    line-height: 1.2em;
+    color: #111;
+    background: rgba(255,255,255,0.3);
+    z-index: 9999;
+
+    display: none;
+}
+
+
+/* ==========================================================================
+   OLD IE
+   ========================================================================== */
+.lt-ie9 .body-wrap {
+    min-width: 1000px;
+}
+.lt-ie9 .cars-nav .car-thumb {
+    left: -116px;   
+}
+.lt-ie9 .cars-nav li:hover a {
+    margin-top: 4px;
+    background: #000;
+}
+.lt-ie9 .cars-nav a {
+    min-width: 15px;
+    min-height: 15px;
+    background: #fff;
+}
+.lt-ie8 .circle-mask {
+    position: relative;
+}
+.lt-ie8 .c1 .circle-mask * {
+    background-position: center 65%;
+} 
+.lt-ie8 .front-car {
+    background: url('/Static/Content/BondCars/bond-img/ie-front-car.png') no-repeat center center;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.lt-ie8 .front-car img {
+    display: none;
+}
+.lt-ie8 .c26 .spiral {
+    display: none;
+}
+.no-borderradius .home-copy-wrap a {
+    left: 0;
+}
+
+/* ==========================================================================
+   iPad
+   ========================================================================== */
+.isiPad .cars-nav {
+    display: none;
+}
+
+
+
+/* ==========================================================================
+   NO JS
+   ========================================================================== */
+.no-js .front-page-wrap {
+    position: relative;
+}
+.no-js-warning {
+    width: 100%;
+    padding: 1em 0;
+    background: red;
+    color: #fff;
+    font-size: 1.4em;
+    text-align: center;
+}
+.no-js .app-header,
+.no-js .final-page,
+.no-js #scrollY,
+.no-js .photo-mask-wrap,
+.no-js .front-car {
+    display: none;
+}
+.no-js .mobile-only {
+    display: block;
+}
+.no-js .cars-nav {
+    right: 1em;
+	top: 10px;
+    display: none;
+}
+.no-js .cars-layer, .no-js .car {
+    position: relative;
+	display: block;
+    visibility: visible !important;
+}
+.no-js .car {
+	max-height: 500px;
+	padding-top: 2em;
+	padding-bottom: 60%;
+    text-align: center;
+    border-radius: 0;
+}
+.no-js .circle-mask {
+    border-radius: 0;
+}
+.no-js .name {
+    opacity: 1;
+}
+.no-js .date, .no-js .illustration, .no-js .part1, .no-js .part2 {
+    max-width: 1060px;
+	position: absolute;
+    top: 25px;
+	right: 25px;
+	display: block;
+	margin: 0 auto;
+    border-radius: 0;
+    opacity: 1 !important;
+	background-position: center 88%;
+}
+
+.no-js .name, .no-js .description, .no-js .film-title {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 80%;
+    margin: 0 10%;
+    line-height: 1em;
+    white-space: normal;
+}
+.no-js .description {
+    text-align: center;
+	padding: 0.6em 0;
+}
+.no-js .final-bond,
+.no-js .spiral,
+.no-js .front-page h1 {
+	display: none;
+}
+.no-js .front-page {
+    display: block;
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    z-index: 1;
+}
+.no-js .home-copy-wrap {
+    width: 80%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 10%;
+    text-align: center;
+    /*
+    width: 94%;
+    position: relative;
+    margin: 0 auto;
+    padding: 3%;
+    text-align: center;
+    background: #6A3E3D;
+    */
+}
+.no-js .home-copy-wrap a {
+    display: none;
+}
+.no-js .front-page .mobile-only {
+    max-width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    background-color: #454551;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+
+.individual-page-img{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 1900px;
+    margin: 0 auto;
+}
+
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   Theses examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+@media only screen and (min-width: 767px) {
+   ::-webkit-scrollbar {
+		height: 12px;
+		width: 12px;
+		background: #282828;
+	}
+	::-webkit-scrollbar-thumb {
+		background: #fafafa;
+		-webkit-border-radius: 5px;
+	}
+	
+	/* fix height of car */
+	.no-js .car {
+		padding-bottom: 560px;
+	}
+}   
+@media only screen and (max-width: 1000px) {
+    .photo-mask-wrap {
+        display: none;
+    }
+}
+@media only screen and (max-width: 959px) {
+    html.no-js,
+    html.no-js body {
+        height: auto;
+        overflow-x: hidden;
+        background: #454551;
+    }
+    .no-js .body-wrap {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        height: auto !important;
+        overflow: visible;
+    }
+    .no-js .front-page-wrap,
+    .no-js .front-page {
+        width: 100%;
+        height: auto;
+    }
+    .no-js .front-page .mobile-only {
+        width: 100%;
+        height: auto;
+    }
+    .no-js .home-copy-wrap {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 2rem 1.25rem 2.5rem;
+        background: #6A3E3D;
+    }
+    .no-js .home-copy-wrap h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1.75rem;
+        line-height: 1;
+    }
+    .no-js .home-copy-wrap p {
+        font-size: 1rem;
+        line-height: 1.45;
+    }
+    .no-js .cars-layer {
+        width: 100% !important;
+        height: auto !important;
+        left: auto !important;
+        top: auto !important;
+        background: transparent;
+    }
+    .no-js .cars-layer ul {
+        width: 100%;
+        height: auto;
+    }
+    .no-js .car {
+        box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        min-height: 0;
+        padding: 2rem 1rem min(82vw, 540px);
+        overflow: hidden;
+    }
+    .no-js .circle-mask {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    .no-js .date,
+    .no-js .illustration,
+    .no-js .part1,
+    .no-js .part2 {
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        background-position: center 78%;
+        background-size: min(100vw, 660px) auto;
+    }
+    .no-js .photo-test .cars-layer .car .illustration::after {
+        top: 55%;
+        width: min(88vw, 520px);
+        aspect-ratio: 4 / 3;
+        border-radius: 18px;
+    }
+    .no-js .photo-test .car {
+        padding-bottom: calc(min(82vw, 540px) + 5rem);
+    }
+    .no-js .photo-test .info {
+        position: static;
+    }
+    .no-js .photo-test .description {
+        position: absolute;
+        top: auto;
+        bottom: 1.25rem;
+        left: 1rem;
+        right: auto;
+        width: calc(100% - 2rem);
+        margin: 0;
+        transform: none;
+        text-align: center;
+    }
+    .no-js .info {
+        position: relative;
+        z-index: 2;
+    }
+    .no-js .name,
+    .no-js .description,
+    .no-js .film-title {
+        width: 100%;
+        margin: 0;
+    }
+    .no-js .name {
+        font-size: 1.8rem;
+        line-height: 1.05;
+    }
+    .no-js .film-title {
+        margin-top: 0.35rem;
+        font-size: 1.2rem;
+    }
+    .no-js .description {
+        box-sizing: border-box;
+        padding: 0.85rem 0 0;
+        font-size: 1rem;
+        line-height: 1.35;
+    }
+    .app-footer {
+        width: 90%;
+    }
+	.description {
+        width: 88%;
+        padding: 0 6%;
+		right: 0;
+        white-space: normal;
+    }
+	.js .date, .js .illustration, .js .part1, .js .part2{
+		background-size: 55% auto;
+	}
+    .brand-name {
+        position: fixed;
+        left: 4%;
+        bottom: 64px;
+    }
+	.no-js .app-footer {
+		position: relative;
+		width: 100%;
+        height: 5.5rem;
+		margin: 0;
+		left: 0;
+		background: #282828;
+	}
+	.no-js .brand-name {
+		position: relative;
+        left: 1.25rem;
+        bottom: auto;
+		top: 0.5rem;
+	}
+}
+
+@media only screen and (max-width: 700px) {
+    .cars-nav {
+        display: none;
+    }
+}
+
+/* by height */
+@media only screen and (max-height: 585px) {
+    .app-footer {
+        width: 92%;
+    }
+	.cars-nav {
+        display: none;
+    }
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+       only screen and (min-resolution: 144dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Data-driven timeline
+   ========================================================================== */
+.data-driven .circle-mask {
+    background-color: var(--scene-background) !important;
+}
+.data-driven .name,
+.data-driven .description {
+    color: var(--scene-accent) !important;
+}
+.data-driven .film-title {
+    color: #fff !important;
+}
+.data-driven .illustration {
+    background-image: none !important;
+}
+.data-driven .illustration::after {
+    background-image: var(--scene-image) !important;
+}
+.data-driven .date {
+    color: var(--scene-accent);
+    background-image: none !important;
+    font: 900 clamp(4rem, min(16vw, 18vh), 12rem)/0.78 "Montserrat", sans-serif;
+    letter-spacing: -0.08em;
+    white-space: nowrap;
+}
+.data-driven .car-thumb {
+    background-color: var(--scene-background) !important;
+    background-image: none !important;
+}
+.data-driven .cars-nav li.current a,
+.data-driven .cars-nav li:hover a {
+    border-color: var(--scene-accent) !important;
+}
+.timeline-error {
+    position: fixed;
+    z-index: 100;
+    top: 50%;
+    left: 50%;
+    width: min(90%, 36rem);
+    padding: 1.5rem;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    background: #6A3E3D;
+    text-align: center;
+}
+
+@media only screen and (max-width: 959px) {
+    .js body.data-driven,
+    .js body.data-driven .body-wrap {
+        min-width: 0;
+        overflow-x: hidden;
+    }
+    .js .data-driven .front-page {
+        margin-left: 0 !important;
+    }
+    .js .data-driven .front-page h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 0;
+        top: 43%;
+        left: 50%;
+        margin: 0;
+        font-size: clamp(5rem, 25vw, 7rem);
+        line-height: 1;
+        transform: translate(-50%, -50%);
+    }
+    .js .data-driven .front-page h1 span {
+        margin: 0 -0.03em;
+    }
+    .js .data-driven .front-car {
+        top: 43%;
+        left: 50%;
+        width: 140px;
+        height: 140px;
+        margin-top: -70px;
+        margin-left: -70px;
+    }
+    .js .data-driven .home-copy-wrap {
+        box-sizing: border-box;
+        top: 59%;
+        left: 0;
+        width: 100%;
+        margin: 0;
+        padding: 0 1.25rem;
+        text-align: center;
+    }
+    .js .data-driven .home-copy-wrap h2 {
+        margin-top: 0;
+        font-size: 1.55rem;
+        line-height: 1;
+    }
+    .js .data-driven .home-copy-wrap p {
+        max-width: 30rem;
+        margin: 0 auto;
+        font-size: 0.95rem;
+    }
+    .js .data-driven .home-copy-wrap a {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+    .js .data-driven .name {
+        top: 0.75rem;
+        left: 4%;
+        width: 92%;
+        font-size: clamp(1.5rem, 7vw, 2.2rem);
+        line-height: 1.05;
+        white-space: normal;
+    }
+    .js .data-driven .film-title {
+        top: 4.75rem;
+        left: 4%;
+        width: 92%;
+        font-size: clamp(1.25rem, 6vw, 1.8rem);
+        line-height: 1;
+    }
+}
+
+/* ==========================================================================
+   Custom title screen
+   ========================================================================== */
+.data-driven .custom-title-page {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(0.75rem, 2vh, 1.5rem);
+    width: 100%;
+    height: 100%;
+    padding: clamp(1.5rem, 4vh, 3.5rem) clamp(1rem, 4vw, 3.5rem);
+    background: #FFD24D;
+}
+.data-driven .title-transition-stage {
+    position: fixed;
+}
+.data-driven .title-circle-mask {
+    overflow: hidden;
+    background: #FFD24D;
+    border-radius: 50%;
+}
+.data-driven .title-circle-mask .custom-title-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+}
+.data-driven .custom-title-page .custom-title-heading {
+    position: relative;
+    inset: auto;
+    display: block;
+    min-width: 0;
+    margin: 0;
+    color: #161F2E;
+    font: 700 clamp(2rem, 4.5vw, 4.75rem)/1.1 "Merriweather", serif;
+    text-align: center;
+    white-space: normal;
+}
+.data-driven .custom-title-page .custom-title-heading span {
+    display: block;
+    float: none;
+    margin: 0;
+}
+.data-driven .custom-title-page .custom-title-visual {
+    align-self: stretch;
+    justify-self: stretch;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 2vh, 1.25rem);
+}
+.data-driven .custom-title-page .custom-title-art {
+    display: block;
+    flex: 0 1 auto;
+    width: auto;
+    height: auto;
+    max-width: min(85vw, 900px);
+    max-height: calc(100% - 3.5rem);
+    object-fit: contain;
+}
+.data-driven .custom-title-page .custom-title-description {
+    margin: 0;
+    color: #161F2E;
+    font: 700 clamp(1rem, 1.8vw, 1.5rem)/1.3 "Merriweather", serif;
+    text-align: center;
+}
+
+@media only screen and (max-width: 959px) {
+    .js .data-driven .custom-title-page {
+        margin-left: 0 !important;
+        gap: 0.75rem;
+        padding: 1.5rem 1rem;
+    }
+    .js .data-driven .custom-title-page .custom-title-heading {
+        position: relative;
+        inset: auto;
+        display: block;
+        min-width: 0;
+        margin: 0;
+        color: #161F2E;
+        font-size: clamp(1.75rem, 8vw, 3rem);
+        line-height: 1.1;
+        transform: none;
+    }
+    .data-driven .custom-title-page .custom-title-art {
+        max-width: 92vw;
+    }
+    .data-driven .custom-title-page .custom-title-description {
+        font-size: 1rem;
+    }
+}
+
+/* ==========================================================================
+   Responsive scene content container
+   ========================================================================== */
+.data-driven .scene-content {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    max-width: 94vw;
+    transform: translate(-50%, -50%);
+}
+.data-driven .photo-landscape .scene-content {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.photo-test.data-driven .cars-layer .car .scene-content .illustration {
+    position: relative !important;
+    inset: auto !important;
+    display: block;
+    flex: none;
+    width: auto !important;
+    height: min(40.5vw, 50vh, 619px) !important;
+    background-image: none !important;
+    border-radius: 0;
+}
+.photo-test.data-driven .cars-layer .car .scene-content .illustration::after {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    aspect-ratio: auto !important;
+    transform: none !important;
+    border-radius: 28px !important;
+}
+.data-driven .photo-landscape .scene-content .illustration {
+    aspect-ratio: 16 / 9;
+}
+.data-driven .scene-content .date {
+    position: static !important;
+    inset: auto !important;
+    display: block;
+    width: auto;
+    height: auto;
+    margin-bottom: clamp(0.65rem, 1.5vh, 1.25rem);
+    transform: none !important;
+}
+.data-driven .photo-landscape .scene-content .date-left {
+    align-self: flex-start;
+}
+.data-driven .photo-landscape .scene-content .date-right {
+    align-self: flex-end;
+}
+.photo-test.data-driven .scene-content .description {
+    position: static !important;
+    inset: auto !important;
+    display: block;
+    box-sizing: border-box;
+    width: 100% !important;
+    margin: clamp(0.65rem, 1.5vh, 1.25rem) 0 0;
+    padding: 0;
+    transform: none !important;
+    font: 700 clamp(0.9rem, 1.1vw, 1.1rem)/1.3 "Merriweather", serif;
+    text-align: center;
+    white-space: normal;
+}
+.data-driven .photo-portrait .scene-content {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+    justify-content: center;
+    column-gap: clamp(0.75rem, 2.5vw, 2.5rem);
+}
+.data-driven .photo-portrait.date-side-right .scene-content {
+    grid-template-areas:
+        "photo date"
+        "description description";
+}
+.data-driven .photo-portrait.date-side-left .scene-content {
+    grid-template-areas:
+        "date photo"
+        "description description";
+}
+.photo-test.data-driven .cars-layer .car.photo-portrait .scene-content .illustration {
+    grid-area: photo;
+    width: auto !important;
+    height: min(72vw, 65vh, 900px) !important;
+    aspect-ratio: 9 / 16;
+}
+.data-driven .photo-portrait .scene-content .date {
+    grid-area: date;
+    margin: 0;
+}
+.photo-test.data-driven .photo-portrait .scene-content .description {
+    grid-area: description;
+    justify-self: center;
+    width: min(80vw, 900px) !important;
+}
+
+@media only screen and (max-width: 959px) {
+    .data-driven .scene-content {
+        top: 56%;
+        max-width: 96vw;
+    }
+    .photo-test.data-driven .cars-layer .car.photo-landscape .scene-content .illustration {
+        width: auto !important;
+        height: min(69vw, 54vh, 420px) !important;
+        aspect-ratio: 4 / 3;
+    }
+    .photo-test.data-driven .cars-layer .car.photo-portrait .scene-content .illustration {
+        width: auto !important;
+        height: min(92vw, 65vh, 560px) !important;
+        aspect-ratio: 3 / 4;
+    }
+    .photo-test.data-driven .cars-layer .car .scene-content .illustration::after {
+        border-radius: 18px !important;
+    }
+    .data-driven .scene-content .date {
+        font-size: clamp(2.5rem, 11vw, 4.5rem);
+    }
+    .data-driven .photo-portrait .scene-content {
+        column-gap: clamp(0.5rem, 2vw, 1rem);
+    }
+    .photo-test.data-driven .scene-content .description,
+    .photo-test.data-driven .photo-portrait .scene-content .description {
+        width: min(92vw, 560px) !important;
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
