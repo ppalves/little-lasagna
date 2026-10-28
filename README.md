@@ -15,8 +15,8 @@ Then visit `http://localhost:4173`.
 - `index.html` combines the unique title screen with the generated timeline so scrolling moves naturally between them.
 - `cars.html` is the reusable timeline-only page for direct scene links such as `cars.html#c18`.
 - `Static/Content/BondCars/data/cars.json` contains every scene's title, subtitle, date, image, description, colors, date placement, and photo orientation.
-- `Static/Content/BondCars/bond-js/timeline-data.js` fetches the JSON and renders the navigation and scene markup before starting the timeline runtime.
+- `Static/Content/BondCars/bond-js/timeline.js` fetches the JSON, renders the scenes, and drives the scroll transitions with browser-native JavaScript.
 
 Add or edit timeline pages by changing the JSON array rather than creating another HTML file.
 
-The original `c1.html` through `c26.html` files remain unchanged as recovery and implementation references. They are no longer used by the data-driven timeline.
+The site has no framework or runtime package dependencies.
