@@ -26,6 +26,7 @@
         titleMask: document.querySelector('.title-circle-mask'),
         titleHeading: document.querySelector('.custom-title-heading'),
         titleDescription: document.querySelector('.custom-title-description'),
+        footer: document.querySelector('.app-footer'),
         error: document.querySelector('#timeline-error')
     };
 
@@ -180,6 +181,7 @@
     function updateCurrentPage(page) {
         if (page === state.currentPage) return;
         state.currentPage = page;
+        elements.footer.classList.toggle('app-footer--visible', page > 0);
         state.navItems.forEach(function (item, index) {
             item.classList.toggle('current', index === page - 1);
         });

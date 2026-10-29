@@ -297,7 +297,23 @@ button {
     left: 4%;
     height: 4rem;
     border-top: 1px solid rgba(255, 255, 255, 0.85);
+    opacity: 0;
     pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.app-footer--visible {
+    opacity: 1;
+}
+
+.app-footer-credit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font: 700 clamp(0.75rem, 1vw, 0.95rem)/1 "Merriweather", serif;
+    white-space: nowrap;
 }
 
 .timeline-error {
