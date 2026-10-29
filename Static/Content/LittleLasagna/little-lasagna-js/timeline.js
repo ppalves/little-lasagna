@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var DATA_URL = '/Static/Content/BondCars/data/cars.json';
+    var DATA_URL = '/Static/Content/LittleLasagna/data/timeline.json';
     var PAGE_HEIGHT = 1000;
     var HOLD_RATIO = 0.3;
     var UNLOCK_RATIO = 0.31;
     var state = {
-        cars: [],
+        scenes: [],
         scenes: [],
         navItems: [],
         currentPage: -1,
@@ -17,10 +17,10 @@
 
     var elements = {
         bodyWrap: document.querySelector('#body-wrap'),
-        stage: document.querySelector('#cars-layer'),
-        stageList: document.querySelector('#cars-layer ul'),
-        nav: document.querySelector('#cars-nav'),
-        navList: document.querySelector('#cars-nav ul'),
+        stage: document.querySelector('#timeline-layer'),
+        stageList: document.querySelector('#timeline-layer ul'),
+        nav: document.querySelector('#timeline-nav'),
+        navList: document.querySelector('#timeline-nav ul'),
         titleWrap: document.querySelector('.front-page-wrap'),
         titleStage: document.querySelector('.title-transition-stage'),
         titleMask: document.querySelector('.title-circle-mask'),
@@ -55,23 +55,23 @@
         return 1 - ((progress - 0.7) / 0.01);
     }
 
-    function createNavigationItem(car, index) {
+    function createNavigationItem(entry, index) {
         var item = document.createElement('li');
         var button = document.createElement('button');
         var dot = document.createElement('span');
 
-        item.style.setProperty('--scene-background', car.colors.background);
-        item.style.setProperty('--scene-accent', car.colors.accent);
+        item.style.setProperty('--scene-background', entry.colors.background);
+        item.style.setProperty('--scene-accent', entry.colors.accent);
         button.type = 'button';
         button.dataset.page = String(index + 1);
-        button.setAttribute('aria-label', car.subtitle + ': ' + car.title);
+        button.setAttribute('aria-label', entry.subtitle + ': ' + entry.title);
         dot.className = 'nav-dot';
         button.appendChild(dot);
         item.appendChild(button);
         return item;
     }
 
-    function createScene(car, index) {
+    function createScene(entry, index) {
         var scene = document.createElement('li');
         var mask = document.createElement('div');
         var content = document.createElement('div');
@@ -81,29 +81,29 @@
         var info = document.createElement('div');
         var title = document.createElement('h2');
         var subtitle = document.createElement('p');
-        var orientation = car.orientation === 'portrait' ? 'portrait' : 'landscape';
+        var orientation = entry.orientation === 'portrait' ? 'portrait' : 'landscape';
 
-        scene.id = car.id;
-        scene.className = 'car photo-' + orientation + ' date-side-' + car.datePosition;
-        scene.style.zIndex = String(state.cars.length - index);
-        scene.style.setProperty('--scene-background', car.colors.background);
-        scene.style.setProperty('--scene-accent', car.colors.accent);
+        scene.id = entry.id;
+        scene.className = 'timeline-scene photo-' + orientation + ' date-side-' + entry.datePosition;
+        scene.style.zIndex = String(state.scenes.length - index);
+        scene.style.setProperty('--scene-background', entry.colors.background);
+        scene.style.setProperty('--scene-accent', entry.colors.accent);
 
         mask.className = 'circle-mask';
         content.className = 'scene-content';
-        date.className = 'date date-' + car.datePosition;
-        date.textContent = car.date;
+        date.className = 'date date-' + entry.datePosition;
+        date.textContent = entry.date;
         illustration.className = 'illustration';
-        illustration.style.backgroundImage = 'url("' + car.image + '")';
+        illustration.style.backgroundImage = 'url("' + entry.image + '")';
         illustration.setAttribute('role', 'img');
-        illustration.setAttribute('aria-label', car.title);
+        illustration.setAttribute('aria-label', entry.title);
         description.className = 'description';
-        description.textContent = car.description;
+        description.textContent = entry.description;
         info.className = 'info';
         title.className = 'name';
-        title.textContent = car.title;
+        title.textContent = entry.title;
         subtitle.className = 'film-title';
-        subtitle.textContent = car.subtitle;
+        subtitle.textContent = entry.subtitle;
 
         content.appendChild(date);
         content.appendChild(illustration);
@@ -120,9 +120,9 @@
         var navFragment = document.createDocumentFragment();
         var sceneFragment = document.createDocumentFragment();
 
-        state.cars.forEach(function (car, index) {
-            navFragment.appendChild(createNavigationItem(car, index));
-            sceneFragment.appendChild(createScene(car, index));
+        state.scenes.forEach(function (entry, index) {
+            navFragment.appendChild(createNavigationItem(entry, index));
+            sceneFragment.appendChild(createScene(entry, index));
         });
 
         elements.navList.appendChild(navFragment);
@@ -167,7 +167,7 @@
     function pageFromScroll(scrollPosition) {
         if (state.hasTitle && scrollPosition < PAGE_HEIGHT) return 0;
         var offset = state.hasTitle ? 1 : 0;
-        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.cars.length);
+        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.scenes.length);
     }
 
     function updateUrl(page) {
@@ -232,7 +232,7 @@
     }
 
     function navigateToPage(page, smooth) {
-        var target = clamp(page, state.hasTitle ? 0 : 1, state.cars.length);
+        var target = clamp(page, state.hasTitle ? 0 : 1, state.scenes.length);
         window.scrollTo({
             top: pageScrollPosition(target),
             behavior: smooth ? 'smooth' : 'auto'
@@ -242,7 +242,7 @@
     function requestedPageFromHash() {
         var match = window.location.hash.match(/^#c(\d+)$/);
         if (!match) return state.hasTitle ? 0 : 1;
-        return clamp(parseInt(match[1], 10), 1, state.cars.length);
+        return clamp(parseInt(match[1], 10), 1, state.scenes.length);
     }
 
     function bindEvents() {
@@ -273,13 +273,13 @@
             if (!response.ok) throw new Error('Timeline data request failed with status ' + response.status + '.');
             return response.json();
         })
-        .then(function (cars) {
-            if (!Array.isArray(cars) || cars.length === 0) {
+        .then(function (entries) {
+            if (!Array.isArray(entries) || entries.length === 0) {
                 throw new Error('Timeline data must be a non-empty array.');
             }
-            state.cars = cars;
+            state.scenes = entries;
             renderTimeline();
-            document.body.style.height = ((cars.length + (state.hasTitle ? 2 : 1)) * PAGE_HEIGHT) + 'px';
+            document.body.style.height = ((entries.length + (state.hasTitle ? 2 : 1)) * PAGE_HEIGHT) + 'px';
             bindEvents();
             resizeStages();
             navigateToPage(requestedPageFromHash(), false);

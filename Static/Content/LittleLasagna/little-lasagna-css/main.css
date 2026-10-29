@@ -118,7 +118,7 @@ button {
     background: #6A3E3D;
 }
 
-.car {
+.timeline-scene {
     position: absolute;
     inset: 0;
     display: none;
@@ -246,7 +246,7 @@ button {
     font: 700 2rem/1.15 "Merriweather", serif;
 }
 
-.cars-nav {
+.timeline-nav {
     position: fixed;
     z-index: 4;
     top: 50%;
@@ -254,14 +254,14 @@ button {
     transform: translateY(-50%);
 }
 
-.cars-nav ul {
+.timeline-nav ul {
     display: flex;
     flex-direction: column;
     gap: 0.3rem;
     height: auto;
 }
 
-.cars-nav button {
+.timeline-nav button {
     display: grid;
     width: 1.35rem;
     height: 1.35rem;
@@ -282,8 +282,8 @@ button {
     transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
 }
 
-.cars-nav button:hover .nav-dot,
-.cars-nav .current .nav-dot {
+.timeline-nav button:hover .nav-dot,
+.timeline-nav .current .nav-dot {
     width: 1rem;
     height: 1rem;
     border-color: var(--scene-accent);
@@ -395,13 +395,13 @@ button {
 }
 
 @media (max-width: 700px) {
-    .cars-nav {
+    .timeline-nav {
         display: none;
     }
 }
 
 @media (max-height: 585px) and (min-width: 701px) {
-    .cars-nav {
+    .timeline-nav {
         display: none;
     }
 }
