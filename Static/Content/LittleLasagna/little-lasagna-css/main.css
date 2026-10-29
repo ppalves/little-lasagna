@@ -51,11 +51,9 @@ button {
 .title-circle-mask,
 .circle-mask {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    overflow: hidden;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
+    inset: 0;
+    -webkit-clip-path: circle(50% at 50% 50%);
+    clip-path: circle(50% at 50% 50%);
 }
 
 .title-circle-mask {
@@ -163,9 +161,9 @@ button {
     width: max-content;
     margin-bottom: clamp(0.65rem, 1.5vh, 1.25rem);
     color: var(--scene-accent);
-    font: 900 clamp(4rem, min(16vw, 18vh), 12rem)/0.78 "Montserrat", sans-serif;
+    font: 900 clamp(2.5rem, min(6vw, 11vh), 7rem)/0.95 "Montserrat", sans-serif;
     letter-spacing: -0.08em;
-    white-space: nowrap;
+    white-space: pre;
 }
 
 .photo-landscape .date-left {
@@ -174,6 +172,12 @@ button {
 
 .photo-landscape .date-right {
     align-self: flex-end;
+    text-align: right;
+}
+
+.photo-portrait .date-left,
+.photo-square .date-left {
+    text-align: right;
 }
 
 .description {
@@ -184,7 +188,8 @@ button {
     text-align: center;
 }
 
-.photo-portrait .scene-content {
+.photo-portrait .scene-content,
+.photo-square .scene-content {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;
@@ -192,13 +197,15 @@ button {
     column-gap: clamp(0.75rem, 2.5vw, 2.5rem);
 }
 
-.photo-portrait.date-side-right .scene-content {
+.photo-portrait.date-side-right .scene-content,
+.photo-square.date-side-right .scene-content {
     grid-template-areas:
         "photo date"
         "description description";
 }
 
-.photo-portrait.date-side-left .scene-content {
+.photo-portrait.date-side-left .scene-content,
+.photo-square.date-side-left .scene-content {
     grid-template-areas:
         "date photo"
         "description description";
@@ -210,38 +217,45 @@ button {
     aspect-ratio: 9 / 16;
 }
 
-.photo-portrait .date {
+.photo-square .illustration {
+    grid-area: photo;
+    height: min(48vw, 62vh, 760px);
+    aspect-ratio: 1 / 1;
+}
+
+.photo-portrait .date,
+.photo-square .date {
     grid-area: date;
     margin: 0;
 }
 
-.photo-portrait .description {
+.photo-portrait .description,
+.photo-square .description {
     grid-area: description;
     justify-self: center;
     width: min(80vw, 900px);
 }
 
 .info {
+    position: fixed;
+    z-index: 2;
+    top: 2rem;
+    left: 4%;
+    width: 85%;
     pointer-events: none;
 }
 
 .name,
 .film-title {
-    position: fixed;
-    z-index: 2;
-    left: 4%;
-    width: 85%;
     margin: 0;
 }
 
 .name {
-    top: 1rem;
     color: var(--scene-accent);
     font: 700 2rem/1.15 "Merriweather", serif;
 }
 
 .film-title {
-    top: 3.25rem;
     color: #fff;
     font: 700 2rem/1.15 "Merriweather", serif;
 }
@@ -349,7 +363,6 @@ button {
     }
 
     .scene-content {
-        top: 56%;
         max-width: 96vw;
     }
 
@@ -360,37 +373,45 @@ button {
     }
 
     .photo-portrait .illustration {
-        height: min(92vw, 65vh, 560px);
+        height: min(84vw, 58vh, 520px);
         aspect-ratio: 3 / 4;
         border-radius: 18px;
     }
 
+    .photo-square .illustration {
+        height: min(62vw, 50vh, 440px);
+        border-radius: 18px;
+    }
+
     .date {
-        font-size: clamp(2.5rem, 11vw, 4.5rem);
+        font-size: clamp(1.9rem, 8.5vw, 3.25rem);
     }
 
     .description,
-    .photo-portrait .description {
+    .photo-portrait .description,
+    .photo-square .description {
         width: min(92vw, 560px);
         font-size: 0.95rem;
     }
 
-    .photo-portrait .scene-content {
+    .photo-portrait .scene-content,
+    .photo-square .scene-content {
         column-gap: clamp(0.5rem, 2vw, 1rem);
     }
 
-    .name {
-        top: 0.75rem;
+    .info {
+        top: 1.5rem;
         width: 92%;
+    }
+
+    .name {
         font-size: clamp(1.5rem, 7vw, 2.2rem);
         line-height: 1.05;
     }
 
     .film-title {
-        top: 4.75rem;
-        width: 92%;
         font-size: clamp(1.25rem, 6vw, 1.8rem);
-        line-height: 1;
+        line-height: 1.1;
     }
 }
 

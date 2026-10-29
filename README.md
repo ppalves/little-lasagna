@@ -13,8 +13,8 @@ Then visit `http://localhost:4173`.
 ## Page structure
 
 - `index.html` combines the unique title screen with the generated timeline so scrolling moves naturally between them.
-- `timeline.html` is the reusable timeline-only page for direct scene links such as `timeline.html#c18`.
-- `Static/Content/LittleLasagna/data/timeline.json` contains every scene's title, subtitle, date, image, description, colors, date placement, and photo orientation.
+- `timeline.html` is the reusable timeline-only page for direct scene links such as `timeline.html#id18`.
+- `Static/Content/LittleLasagna/data/little-lasagna-timeline.json` contains every scene's title, subtitle, date, image, description, colors, date placement, and photo orientation (`landscape`, `portrait`, or `square`).
 - `Static/Content/LittleLasagna/little-lasagna-css/main.css` contains all styles.
 - `Static/Content/LittleLasagna/little-lasagna-img/` holds the title artwork and timeline photos.
 - `Static/Content/LittleLasagna/little-lasagna-js/timeline.js` fetches the JSON, renders the scenes, and drives the scroll transitions with browser-native JavaScript.

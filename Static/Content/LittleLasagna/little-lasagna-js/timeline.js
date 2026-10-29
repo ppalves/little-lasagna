@@ -1,12 +1,12 @@
 (function () {
     'use strict';
 
-    var DATA_URL = '/Static/Content/LittleLasagna/data/timeline.json';
+    var DATA_URL = '/Static/Content/LittleLasagna/data/little-lasagna-timeline.json';
     var PAGE_HEIGHT = 1000;
     var HOLD_RATIO = 0.3;
     var UNLOCK_RATIO = 0.31;
     var state = {
-        scenes: [],
+        entries: [],
         scenes: [],
         navItems: [],
         currentPage: -1,
@@ -81,18 +81,18 @@
         var info = document.createElement('div');
         var title = document.createElement('h2');
         var subtitle = document.createElement('p');
-        var orientation = entry.orientation === 'portrait' ? 'portrait' : 'landscape';
+        var orientation = entry.orientation === 'portrait' || entry.orientation === 'square' ? entry.orientation : 'landscape';
 
         scene.id = entry.id;
         scene.className = 'timeline-scene photo-' + orientation + ' date-side-' + entry.datePosition;
-        scene.style.zIndex = String(state.scenes.length - index);
+        scene.style.zIndex = String(state.entries.length - index);
         scene.style.setProperty('--scene-background', entry.colors.background);
         scene.style.setProperty('--scene-accent', entry.colors.accent);
 
         mask.className = 'circle-mask';
         content.className = 'scene-content';
         date.className = 'date date-' + entry.datePosition;
-        date.textContent = entry.date;
+        date.textContent = entry.date.replace(/,\s*/, '\n');
         illustration.className = 'illustration';
         illustration.style.backgroundImage = 'url("' + entry.image + '")';
         illustration.setAttribute('role', 'img');
@@ -120,7 +120,7 @@
         var navFragment = document.createDocumentFragment();
         var sceneFragment = document.createDocumentFragment();
 
-        state.scenes.forEach(function (entry, index) {
+        state.entries.forEach(function (entry, index) {
             navFragment.appendChild(createNavigationItem(entry, index));
             sceneFragment.appendChild(createScene(entry, index));
         });
@@ -150,9 +150,10 @@
     }
 
     function setMaskSize(mask, progress) {
-        var size = state.stageSize * (1 - transitionProgress(progress));
-        mask.style.width = size + 'px';
-        mask.style.height = size + 'px';
+        var radius = (state.stageSize / 2) * (1 - transitionProgress(progress));
+        var circle = 'circle(' + radius.toFixed(1) + 'px at 50% 50%)';
+        mask.style.webkitClipPath = circle;
+        mask.style.clipPath = circle;
     }
 
     function sceneStart(index) {
@@ -167,13 +168,13 @@
     function pageFromScroll(scrollPosition) {
         if (state.hasTitle && scrollPosition < PAGE_HEIGHT) return 0;
         var offset = state.hasTitle ? 1 : 0;
-        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.scenes.length);
+        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.entries.length);
     }
 
     function updateUrl(page) {
-        var nextUrl = window.location.pathname;
-        if (page > 0) nextUrl += '#c' + page;
-        if (window.location.pathname + window.location.hash !== nextUrl) {
+        var nextUrl = window.location.pathname + window.location.search;
+        if (page > 0) nextUrl += '#' + encodeURIComponent(state.entries[page - 1].id);
+        if (window.location.pathname + window.location.search + window.location.hash !== nextUrl) {
             window.history.replaceState({}, document.title, nextUrl);
         }
     }
@@ -203,7 +204,8 @@
         var currentIndex = page === 0 ? 0 : page - 1;
 
         state.scenes.forEach(function (scene, index) {
-            var visible = index === currentIndex || index === currentIndex + 1;
+            // Keep the previous scene rendered too so its photo stays decoded when scrolling back up.
+            var visible = index >= currentIndex - 1 && index <= currentIndex + 1;
             scene.style.display = visible ? 'block' : 'none';
             if (!visible) return;
 
@@ -232,7 +234,7 @@
     }
 
     function navigateToPage(page, smooth) {
-        var target = clamp(page, state.hasTitle ? 0 : 1, state.scenes.length);
+        var target = clamp(page, state.hasTitle ? 0 : 1, state.entries.length);
         window.scrollTo({
             top: pageScrollPosition(target),
             behavior: smooth ? 'smooth' : 'auto'
@@ -240,9 +242,12 @@
     }
 
     function requestedPageFromHash() {
-        var match = window.location.hash.match(/^#c(\d+)$/);
-        if (!match) return state.hasTitle ? 0 : 1;
-        return clamp(parseInt(match[1], 10), 1, state.scenes.length);
+        var id = decodeURIComponent(window.location.hash.slice(1));
+        var index = state.entries.findIndex(function (entry) {
+            return entry.id === id;
+        });
+        if (index === -1) return state.hasTitle ? 0 : 1;
+        return index + 1;
     }
 
     function bindEvents() {
@@ -277,7 +282,7 @@
             if (!Array.isArray(entries) || entries.length === 0) {
                 throw new Error('Timeline data must be a non-empty array.');
             }
-            state.scenes = entries;
+            state.entries = entries;
             renderTimeline();
             document.body.style.height = ((entries.length + (state.hasTitle ? 2 : 1)) * PAGE_HEIGHT) + 'px';
             bindEvents();
