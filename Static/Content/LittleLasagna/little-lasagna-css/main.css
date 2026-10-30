@@ -11,6 +11,13 @@ body {
     margin: 0;
 }
 
+/* Installed iPhone apps draw under the status bar (and swipe bar), so keep content inside the safe area. */
+:root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-shift: calc((var(--safe-top) - var(--safe-bottom)) / 2);
+}
+
 body {
     overflow-x: hidden;
     color: #fff;
@@ -76,6 +83,8 @@ button {
     /* Height with the mobile address bar showing, so nothing is hidden behind it on load. */
     height: 100svh;
     padding: clamp(1.5rem, 4vh, 3.5rem) clamp(1rem, 4vw, 3.5rem);
+    padding-top: calc(clamp(1.5rem, 4vh, 3.5rem) + var(--safe-top));
+    padding-bottom: calc(clamp(1.5rem, 4vh, 3.5rem) + var(--safe-bottom));
     transform: translate(-50%, -50%);
     background: #FFD24D;
 }
@@ -136,7 +145,7 @@ button {
 .scene-content {
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: calc(50% + var(--safe-shift));
     left: 50%;
     max-width: 94vw;
     transform: translate(-50%, -50%);
@@ -150,7 +159,7 @@ button {
 .letter-content {
     position: absolute;
     z-index: 1;
-    top: 50%;
+    top: calc(50% + var(--safe-shift));
     left: 50%;
     display: flex;
     flex-direction: column;
@@ -158,7 +167,7 @@ button {
     gap: clamp(0.75rem, 2vh, 1.5rem);
     width: min(92vw, 720px);
     max-height: calc(100vh - 10rem);
-    max-height: calc(100svh - 10rem);
+    max-height: calc(100svh - 10rem - var(--safe-top) - var(--safe-bottom));
     transform: translate(-50%, -50%);
 }
 
@@ -303,7 +312,7 @@ button {
 .info {
     position: fixed;
     z-index: 2;
-    top: 2rem;
+    top: calc(2rem + var(--safe-top));
     left: 4%;
     width: 85%;
     pointer-events: none;
@@ -495,7 +504,7 @@ button {
 @media (max-width: 959px) {
     .custom-title-page {
         gap: 0.75rem;
-        padding: 1.5rem 1rem;
+        padding: calc(1.5rem + var(--safe-top)) 1rem calc(1.5rem + var(--safe-bottom));
     }
 
     .custom-title-heading {
@@ -548,13 +557,13 @@ button {
     }
 
     .info {
-        top: 1.5rem;
+        top: calc(1.5rem + var(--safe-top));
         width: 92%;
     }
 
     .letter-content {
         max-height: calc(100vh - 7rem);
-        max-height: calc(100svh - 7rem);
+        max-height: calc(100svh - 7rem - var(--safe-top) - var(--safe-bottom));
     }
 
     .letter-card {
