@@ -46,6 +46,7 @@
         titleMask: document.querySelector('.title-circle-mask'),
         titleHeading: document.querySelector('.custom-title-heading'),
         titleDescription: document.querySelector('.custom-title-description'),
+        titleCue: document.querySelector('.title-scroll-cue'),
         footer: document.querySelector('.app-footer'),
         error: document.querySelector('#timeline-error'),
         themeColor: document.querySelector('meta[name="theme-color"]')
@@ -453,6 +454,7 @@
         var opacity = titleOpacity(progress);
         elements.titleHeading.style.opacity = String(opacity);
         elements.titleDescription.style.opacity = String(opacity);
+        if (elements.titleCue) elements.titleCue.style.opacity = String(opacity);
     }
 
     function renderScenes(scrollPosition, page) {
@@ -552,6 +554,11 @@
             if (!button) return;
             navigateToPage(parseInt(button.dataset.page, 10), true);
         });
+        if (elements.titleCue) {
+            elements.titleCue.addEventListener('click', function () {
+                navigateToPage(1, true);
+            });
+        }
         document.addEventListener('keydown', function (event) {
             if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
             var page = pageFromScroll(window.scrollY || window.pageYOffset);

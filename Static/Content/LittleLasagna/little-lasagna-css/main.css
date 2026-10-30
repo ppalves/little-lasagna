@@ -126,6 +126,54 @@ button {
     text-align: center;
 }
 
+/* Small chevron under the subtitle telling phone visitors to scroll; hidden on desktop. */
+.title-scroll-cue {
+    display: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: #161F2E;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.title-scroll-cue svg {
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+    margin: auto;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: title-cue-bob 1.6s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.title-scroll-cue:focus-visible {
+    outline: 2px solid #161F2E;
+    outline-offset: 2px;
+}
+
+@keyframes title-cue-bob {
+    from {
+        transform: translateY(-3px);
+    }
+
+    to {
+        transform: translateY(4px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .title-scroll-cue svg {
+        animation: none;
+    }
+}
+
 .scene-stage {
     z-index: 1;
     background: #6A3E3D;
@@ -503,8 +551,11 @@ button {
 }
 
 @media (max-width: 959px) {
+    /* Phones: center title, art and subtitle as one group instead of pinning the title to the top. */
     .custom-title-page {
-        gap: 0.75rem;
+        grid-template-rows: auto auto;
+        align-content: center;
+        gap: clamp(1.5rem, 6svh, 3.5rem);
         padding: calc(1.5rem + var(--safe-top)) 1rem calc(1.5rem + var(--safe-bottom));
     }
 
@@ -512,12 +563,23 @@ button {
         font-size: clamp(1.75rem, 8vw, 3rem);
     }
 
+    .custom-title-visual {
+        gap: 0;
+    }
+
     .custom-title-art {
         max-width: 92vw;
+        max-height: max(9rem, calc(100svh - var(--safe-top) - var(--safe-bottom) - 21rem));
     }
 
     .custom-title-description {
+        margin-top: clamp(1.5rem, 5svh, 3rem);
         font-size: 1rem;
+    }
+
+    .title-scroll-cue {
+        display: block;
+        margin-top: 0.5rem;
     }
 
     .scene-content {
