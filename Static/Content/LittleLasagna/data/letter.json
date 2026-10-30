@@ -9,7 +9,7 @@
     ],
     "closing": "With all my love,",
     "signature": "Big Pancake",
-    "image": "/Static/Content/LittleLasagna/little-lasagna-img/comic-lasagna-pancake.png",
+    "image": "Static/Content/LittleLasagna/little-lasagna-img/comic-lasagna-pancake.png",
     "imageAlt": "Comic of Little Lasagna and Big Pancake",
     "colors": {
         "background": "#FFD24D",

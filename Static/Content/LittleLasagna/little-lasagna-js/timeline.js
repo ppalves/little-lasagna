@@ -1,8 +1,8 @@
 (function () {
     'use strict';
 
-    var DATA_URL = '/Static/Content/LittleLasagna/data/little-lasagna-timeline.json';
-    var LETTER_URL = '/Static/Content/LittleLasagna/data/letter.json';
+    var DATA_URL = 'Static/Content/LittleLasagna/data/little-lasagna-timeline.json';
+    var LETTER_URL = 'Static/Content/LittleLasagna/data/letter.json';
     var PAGE_HEIGHT = 1000;
     var HOLD_RATIO = 0.3;
     var UNLOCK_RATIO = 0.31;

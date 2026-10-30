@@ -4,7 +4,7 @@
         "title": "title",
         "subtitle": "subtitle",
         "date": "Apr 11, 2026",
-        "image": "/Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260411.jpg",
+        "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260411.jpg",
         "description": "description",
         "colors": {
             "background": "#302231",
