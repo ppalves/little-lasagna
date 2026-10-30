@@ -3,14 +3,24 @@
 
     var DATA_URL = 'Static/Content/LittleLasagna/data/little-lasagna-timeline.json';
     var LETTER_URL = 'Static/Content/LittleLasagna/data/letter.json';
-    var PAGE_HEIGHT = 1000;
+    var DESKTOP_PAGE_HEIGHT = 1000;
+    // On touch screens a page is a fraction of the screen tall and each swipe moves exactly one page.
+    var TOUCH_PAGE_RATIO = 0.55;
+    var SWIPE_DISTANCE = 40;
+    var SWIPE_VELOCITY = 0.3;
+    var SWIPE_DURATION_MS = 550;
     var HOLD_RATIO = 0.3;
     var UNLOCK_RATIO = 0.31;
     // From this scroll ratio on, the transition finishes by itself instead of following the scroll.
     var COMPLETE_RATIO = 0.9;
-    var COMPLETE_OFFSET = Math.round((1 - COMPLETE_RATIO) * PAGE_HEIGHT);
     var COMPLETE_EASING_MS = 90;
+    var touchQuery = window.matchMedia('(pointer: coarse)');
     var state = {
+        pageHeight: 0,
+        touchMode: false,
+        layoutWidth: 0,
+        swipe: null,
+        pageAnimation: null,
         entries: [],
         letter: null,
         pageCount: 0,
@@ -239,7 +249,7 @@
     }
 
     function sceneStart(index) {
-        return (index + (state.hasTitle ? 1 : 0)) * PAGE_HEIGHT;
+        return (index + (state.hasTitle ? 1 : 0)) * state.pageHeight;
     }
 
     function pageScrollPosition(page) {
@@ -249,10 +259,136 @@
 
     function pageFromScroll(scrollPosition) {
         // A page counts as reached once the transition into it auto-completes.
-        scrollPosition += COMPLETE_OFFSET;
-        if (state.hasTitle && scrollPosition < PAGE_HEIGHT) return 0;
+        scrollPosition += Math.round((1 - COMPLETE_RATIO) * state.pageHeight);
+        if (state.hasTitle && scrollPosition < state.pageHeight) return 0;
         var offset = state.hasTitle ? 1 : 0;
-        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.pageCount);
+        return clamp(Math.floor(scrollPosition / state.pageHeight) - offset + 1, 1, state.pageCount);
+    }
+
+    function currentScroll() {
+        return window.scrollY || window.pageYOffset;
+    }
+
+    function lastPageIndex() {
+        return pageScrollPosition(state.pageCount) / state.pageHeight;
+    }
+
+    function stopPageAnimation() {
+        if (!state.pageAnimation) return;
+        window.cancelAnimationFrame(state.pageAnimation.frame);
+        state.pageAnimation = null;
+    }
+
+    function animateScrollTo(target) {
+        stopPageAnimation();
+        var from = currentScroll();
+        if (from === target) return;
+        var duration = SWIPE_DURATION_MS * clamp(Math.abs(target - from) / state.pageHeight, 0.4, 1);
+        var animation = { start: null, frame: 0 };
+        function step(timestamp) {
+            if (animation.start === null) animation.start = timestamp;
+            var t = clamp((timestamp - animation.start) / duration, 0, 1);
+            window.scrollTo(0, Math.round(from + (target - from) * (1 - Math.pow(1 - t, 3))));
+            if (t < 1) animation.frame = window.requestAnimationFrame(step);
+            else state.pageAnimation = null;
+        }
+        animation.frame = window.requestAnimationFrame(step);
+        state.pageAnimation = animation;
+    }
+
+    function updateScrollLayout() {
+        var previousHeight = state.pageHeight;
+        var previousScroll = currentScroll();
+
+        stopPageAnimation();
+        state.swipe = null;
+        state.touchMode = touchQuery.matches;
+        state.layoutWidth = window.innerWidth;
+        // Only recalculated on load, width or input changes, so the address bar showing/hiding doesn't shift pages.
+        state.pageHeight = state.touchMode ? Math.round(window.innerHeight * TOUCH_PAGE_RATIO) : DESKTOP_PAGE_HEIGHT;
+        document.documentElement.classList.toggle('touch-paging', state.touchMode);
+        // End the scroll exactly on the final page so it can't be scrolled past.
+        document.body.style.height = 'calc(' + sceneStart(state.pageCount - 1) + 'px + 100vh)';
+
+        if (previousHeight && previousHeight !== state.pageHeight) {
+            window.scrollTo(0, Math.round(previousScroll / previousHeight) * state.pageHeight);
+        }
+    }
+
+    function handleResize() {
+        if (window.innerWidth !== state.layoutWidth) updateScrollLayout();
+        resizeStages();
+    }
+
+    // Touch swipes are handled here instead of natively: the page follows the finger
+    // up to one page away, then eases to the next or previous page on release.
+    function handleTouchStart(event) {
+        if (!state.touchMode) return;
+        if (event.touches.length !== 1) {
+            state.swipe = null;
+            return;
+        }
+        stopPageAnimation();
+        var scrollPosition = currentScroll();
+        var y = event.touches[0].clientY;
+        state.swipe = {
+            startY: y,
+            startScroll: scrollPosition,
+            origin: clamp(Math.round(scrollPosition / state.pageHeight), 0, lastPageIndex()),
+            lastY: y,
+            lastTime: event.timeStamp,
+            velocity: 0,
+            scroller: event.target.closest ? event.target.closest('.letter-card') : null,
+            mode: null
+        };
+    }
+
+    function canScrollInside(scroller, delta) {
+        if (!scroller) return false;
+        if (delta > 0) return scroller.scrollTop + scroller.clientHeight < scroller.scrollHeight - 1;
+        return scroller.scrollTop > 0;
+    }
+
+    function handleTouchMove(event) {
+        var swipe = state.swipe;
+        if (!swipe) return;
+        if (event.touches.length !== 1) {
+            state.swipe = null;
+            return;
+        }
+        var y = event.touches[0].clientY;
+        var delta = swipe.startY - y;
+        if (swipe.mode === null) {
+            if (delta === 0) return;
+            // Let the letter scroll natively until it reaches its end.
+            swipe.mode = canScrollInside(swipe.scroller, delta) ? 'native' : 'page';
+        }
+        if (swipe.mode !== 'page') return;
+        if (event.cancelable) event.preventDefault();
+
+        var elapsed = event.timeStamp - swipe.lastTime;
+        if (elapsed > 0) swipe.velocity = 0.8 * ((swipe.lastY - y) / elapsed) + 0.2 * swipe.velocity;
+        swipe.lastY = y;
+        swipe.lastTime = event.timeStamp;
+
+        var min = Math.max(swipe.origin - 1, 0) * state.pageHeight;
+        var max = Math.min(swipe.origin + 1, lastPageIndex()) * state.pageHeight;
+        window.scrollTo(0, clamp(swipe.startScroll + delta, min, max));
+    }
+
+    function handleTouchEnd(event) {
+        var swipe = state.swipe;
+        if (!swipe || event.touches.length) return;
+        state.swipe = null;
+        if (swipe.mode !== 'page') return;
+
+        // Ignore the flick speed if the finger rested before lifting.
+        var velocity = event.timeStamp - swipe.lastTime > 100 ? 0 : swipe.velocity;
+        var moved = currentScroll() - swipe.origin * state.pageHeight;
+        var direction = 0;
+        if (Math.abs(velocity) > SWIPE_VELOCITY) direction = velocity > 0 ? 1 : -1;
+        else if (Math.abs(moved) > SWIPE_DISTANCE) direction = moved > 0 ? 1 : -1;
+        animateScrollTo(clamp(swipe.origin + direction, 0, lastPageIndex()) * state.pageHeight);
     }
 
     function updateUrl(page) {
@@ -276,7 +412,7 @@
 
     function renderTitle(scrollPosition) {
         if (!state.hasTitle) return;
-        var progress = clamp(scrollPosition / PAGE_HEIGHT, 0, 1);
+        var progress = clamp(scrollPosition / state.pageHeight, 0, 1);
         setMaskSize(elements.titleMask, progress);
         elements.titleWrap.style.zIndex = progress >= 1 ? '-1' : '99';
         elements.titleWrap.style.pointerEvents = progress >= 1 ? 'none' : 'auto';
@@ -303,9 +439,11 @@
                 return;
             }
 
-            var localProgress = (scrollPosition - sceneStart(index)) / PAGE_HEIGHT;
+            var localProgress = (scrollPosition - sceneStart(index)) / state.pageHeight;
             // The final page has nothing beneath it, so it never shrinks away.
             setMaskSize(mask, index === lastIndex ? 0 : localProgress);
+            // A fully closed scene is invisible, so let touches and the wheel reach the scene beneath it.
+            scene.style.pointerEvents = mask.shownProgress >= 1 ? 'none' : '';
 
             var title = scene.querySelector('.name');
             if (!title) return;
@@ -346,6 +484,8 @@
 
     function navigateToPage(page, smooth) {
         var target = clamp(page, state.hasTitle ? 0 : 1, state.pageCount);
+        stopPageAnimation();
+        state.swipe = null;
         window.scrollTo({
             top: pageScrollPosition(target),
             behavior: smooth ? 'smooth' : 'auto'
@@ -363,7 +503,12 @@
 
     function bindEvents() {
         window.addEventListener('scroll', requestRender, { passive: true });
-        window.addEventListener('resize', resizeStages);
+        window.addEventListener('touchstart', handleTouchStart, { passive: true });
+        window.addEventListener('touchmove', handleTouchMove, { passive: false });
+        window.addEventListener('touchend', handleTouchEnd);
+        window.addEventListener('touchcancel', handleTouchEnd);
+        window.addEventListener('resize', handleResize);
+        if (touchQuery.addEventListener) touchQuery.addEventListener('change', updateScrollLayout);
         window.addEventListener('hashchange', function () {
             navigateToPage(requestedPageFromHash(), true);
         });
@@ -404,8 +549,7 @@
             state.letter = results[1];
             state.pageCount = entries.length + (state.letter ? 1 : 0);
             renderTimeline();
-            // End the scroll exactly on the final page so it can't be scrolled past.
-            document.body.style.height = 'calc(' + sceneStart(state.pageCount - 1) + 'px + 100vh)';
+            updateScrollLayout();
             bindEvents();
             resizeStages();
             navigateToPage(requestedPageFromHash(), false);
