@@ -53,7 +53,7 @@
             "accent": "#333C4D"
         },
         "datePosition": "right",
-        "orientation": "portrait"
+        "orientation": "square"
     },
     {
         "id": "id6",
