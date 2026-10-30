@@ -2,11 +2,14 @@
     'use strict';
 
     var DATA_URL = '/Static/Content/LittleLasagna/data/little-lasagna-timeline.json';
+    var LETTER_URL = '/Static/Content/LittleLasagna/data/letter.json';
     var PAGE_HEIGHT = 1000;
     var HOLD_RATIO = 0.3;
     var UNLOCK_RATIO = 0.31;
     var state = {
         entries: [],
+        letter: null,
+        pageCount: 0,
         scenes: [],
         navItems: [],
         currentPage: -1,
@@ -55,16 +58,16 @@
         return 1 - ((progress - 0.7) / 0.01);
     }
 
-    function createNavigationItem(entry, index) {
+    function createNavigationItem(colors, label, index) {
         var item = document.createElement('li');
         var button = document.createElement('button');
         var dot = document.createElement('span');
 
-        item.style.setProperty('--scene-background', entry.colors.background);
-        item.style.setProperty('--scene-accent', entry.colors.accent);
+        item.style.setProperty('--scene-background', colors.background);
+        item.style.setProperty('--scene-accent', colors.accent);
         button.type = 'button';
         button.dataset.page = String(index + 1);
-        button.setAttribute('aria-label', entry.subtitle + ': ' + entry.title);
+        button.setAttribute('aria-label', label);
         dot.className = 'nav-dot';
         button.appendChild(dot);
         item.appendChild(button);
@@ -85,7 +88,7 @@
 
         scene.id = entry.id;
         scene.className = 'timeline-scene photo-' + orientation + ' date-side-' + entry.datePosition;
-        scene.style.zIndex = String(state.entries.length - index);
+        scene.style.zIndex = String(state.pageCount - index);
         scene.style.setProperty('--scene-background', entry.colors.background);
         scene.style.setProperty('--scene-accent', entry.colors.accent);
 
@@ -116,14 +119,62 @@
         return scene;
     }
 
+    function appendText(parent, tagName, className, text) {
+        if (!text) return;
+        var element = document.createElement(tagName);
+        element.className = className;
+        element.textContent = text;
+        parent.appendChild(element);
+    }
+
+    function createLetterScene(letter, index) {
+        var scene = document.createElement('li');
+        var mask = document.createElement('div');
+        var content = document.createElement('div');
+        var card = document.createElement('article');
+        var art = document.createElement('img');
+
+        scene.id = letter.id;
+        scene.className = 'timeline-scene letter-scene';
+        scene.style.zIndex = String(state.pageCount - index);
+        scene.style.setProperty('--scene-background', letter.colors.background);
+        scene.style.setProperty('--scene-accent', letter.colors.accent);
+
+        mask.className = 'circle-mask';
+        content.className = 'letter-content';
+        card.className = 'letter-card';
+        appendText(card, 'p', 'letter-greeting', letter.greeting);
+        (letter.paragraphs || []).forEach(function (paragraph) {
+            appendText(card, 'p', 'letter-paragraph', paragraph);
+        });
+        appendText(card, 'p', 'letter-closing', letter.closing);
+        appendText(card, 'p', 'letter-signature', letter.signature);
+
+        content.appendChild(card);
+        if (letter.image) {
+            art.className = 'letter-art';
+            art.src = letter.image;
+            art.alt = letter.imageAlt || '';
+            content.appendChild(art);
+        }
+        mask.appendChild(content);
+        scene.appendChild(mask);
+        return scene;
+    }
+
     function renderTimeline() {
         var navFragment = document.createDocumentFragment();
         var sceneFragment = document.createDocumentFragment();
 
         state.entries.forEach(function (entry, index) {
-            navFragment.appendChild(createNavigationItem(entry, index));
+            navFragment.appendChild(createNavigationItem(entry.colors, entry.subtitle + ': ' + entry.title, index));
             sceneFragment.appendChild(createScene(entry, index));
         });
+        if (state.letter) {
+            var letterIndex = state.entries.length;
+            navFragment.appendChild(createNavigationItem(state.letter.colors, state.letter.navLabel || 'Letter', letterIndex));
+            sceneFragment.appendChild(createLetterScene(state.letter, letterIndex));
+        }
 
         elements.navList.appendChild(navFragment);
         elements.stageList.appendChild(sceneFragment);
@@ -168,12 +219,12 @@
     function pageFromScroll(scrollPosition) {
         if (state.hasTitle && scrollPosition < PAGE_HEIGHT) return 0;
         var offset = state.hasTitle ? 1 : 0;
-        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.entries.length);
+        return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.pageCount);
     }
 
     function updateUrl(page) {
         var nextUrl = window.location.pathname + window.location.search;
-        if (page > 0) nextUrl += '#' + encodeURIComponent(state.entries[page - 1].id);
+        if (page > 0) nextUrl += '#' + encodeURIComponent(state.scenes[page - 1].id);
         if (window.location.pathname + window.location.search + window.location.hash !== nextUrl) {
             window.history.replaceState({}, document.title, nextUrl);
         }
@@ -183,6 +234,7 @@
         if (page === state.currentPage) return;
         state.currentPage = page;
         elements.footer.classList.toggle('app-footer--visible', page > 0);
+        elements.footer.classList.toggle('app-footer--dark', page > 0 && state.scenes[page - 1].classList.contains('letter-scene'));
         state.navItems.forEach(function (item, index) {
             item.classList.toggle('current', index === page - 1);
         });
@@ -202,6 +254,7 @@
 
     function renderScenes(scrollPosition, page) {
         var currentIndex = page === 0 ? 0 : page - 1;
+        var lastIndex = state.scenes.length - 1;
 
         state.scenes.forEach(function (scene, index) {
             // Keep the previous scene rendered too so its photo stays decoded when scrolling back up.
@@ -210,9 +263,13 @@
             if (!visible) return;
 
             var localProgress = (scrollPosition - sceneStart(index)) / PAGE_HEIGHT;
-            setMaskSize(scene.querySelector('.circle-mask'), localProgress);
+            // The final page has nothing beneath it, so it never shrinks away.
+            setMaskSize(scene.querySelector('.circle-mask'), index === lastIndex ? 0 : localProgress);
+
+            var title = scene.querySelector('.name');
+            if (!title) return;
             var infoOpacity = localProgress < 0 ? 0 : titleOpacity(localProgress);
-            scene.querySelector('.name').style.opacity = String(infoOpacity);
+            title.style.opacity = String(infoOpacity);
             scene.querySelector('.film-title').style.opacity = String(infoOpacity);
             scene.querySelector('.description').style.opacity = String(descriptionOpacity(localProgress));
         });
@@ -234,7 +291,7 @@
     }
 
     function navigateToPage(page, smooth) {
-        var target = clamp(page, state.hasTitle ? 0 : 1, state.entries.length);
+        var target = clamp(page, state.hasTitle ? 0 : 1, state.pageCount);
         window.scrollTo({
             top: pageScrollPosition(target),
             behavior: smooth ? 'smooth' : 'auto'
@@ -243,8 +300,8 @@
 
     function requestedPageFromHash() {
         var id = decodeURIComponent(window.location.hash.slice(1));
-        var index = state.entries.findIndex(function (entry) {
-            return entry.id === id;
+        var index = state.scenes.findIndex(function (scene) {
+            return scene.id === id;
         });
         if (index === -1) return state.hasTitle ? 0 : 1;
         return index + 1;
@@ -273,18 +330,28 @@
         elements.error.textContent = error.message || 'The timeline could not be loaded.';
     }
 
-    fetch(DATA_URL)
-        .then(function (response) {
-            if (!response.ok) throw new Error('Timeline data request failed with status ' + response.status + '.');
+    function fetchJson(url, label) {
+        return fetch(url).then(function (response) {
+            if (!response.ok) throw new Error(label + ' request failed with status ' + response.status + '.');
             return response.json();
-        })
-        .then(function (entries) {
+        });
+    }
+
+    Promise.all([
+        fetchJson(DATA_URL, 'Timeline data'),
+        fetchJson(LETTER_URL, 'Letter').catch(function () { return null; })
+    ])
+        .then(function (results) {
+            var entries = results[0];
             if (!Array.isArray(entries) || entries.length === 0) {
                 throw new Error('Timeline data must be a non-empty array.');
             }
             state.entries = entries;
+            state.letter = results[1];
+            state.pageCount = entries.length + (state.letter ? 1 : 0);
             renderTimeline();
-            document.body.style.height = ((entries.length + (state.hasTitle ? 2 : 1)) * PAGE_HEIGHT) + 'px';
+            // End the scroll exactly on the final page so it can't be scrolled past.
+            document.body.style.height = 'calc(' + sceneStart(state.pageCount - 1) + 'px + 100vh)';
             bindEvents();
             resizeStages();
             navigateToPage(requestedPageFromHash(), false);
