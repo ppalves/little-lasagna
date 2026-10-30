@@ -410,14 +410,36 @@
             item.classList.toggle('current', index === page - 1);
         });
         updateUrl(page);
-        updateThemeColor(page);
     }
 
-    // Phones tint the status and navigation bars from the theme color (and page background), so keep them on the current page's color.
-    function updateThemeColor(page) {
+    function sceneColor(scene) {
+        return scene.style.getPropertyValue('--scene-background').trim();
+    }
+
+    function maskCoversEdges(mask) {
+        if (mask.shownProgress === undefined) return false;
+        var radius = (state.stageSize / 2) * (1 - mask.shownProgress);
+        return radius >= Math.sqrt(window.innerWidth * window.innerWidth + window.innerHeight * window.innerHeight) / 2;
+    }
+
+    // Phones tint the status and navigation bars from the theme color (and page background). Use the color of the topmost
+    // layer whose circle still covers the screen edges, so the bars change when a shrinking circle uncovers the edges and
+    // only once a growing circle has covered them again.
+    function updateThemeColor() {
         if (!elements.themeColor) return;
-        var color = page === 0 ? titleThemeColor : state.scenes[page - 1].style.getPropertyValue('--scene-background').trim();
-        if (!color) return;
+        var color = '';
+        if (state.hasTitle && maskCoversEdges(elements.titleMask)) {
+            color = titleThemeColor;
+        } else {
+            for (var i = 0; i < state.scenes.length; i++) {
+                var scene = state.scenes[i];
+                if (scene.style.display === 'none') continue;
+                color = sceneColor(scene);
+                if (maskCoversEdges(scene.querySelector('.circle-mask'))) break;
+            }
+        }
+        if (!color || color === state.themeColor) return;
+        state.themeColor = color;
         elements.themeColor.content = color;
         document.documentElement.style.backgroundColor = color;
     }
@@ -479,6 +501,7 @@
         renderTitle(scrollPosition);
         renderScenes(scrollPosition, page);
         updateCurrentPage(page);
+        updateThemeColor();
 
         // Keep drawing while an auto-completing circle is still easing, even if scrolling stopped.
         if (state.animating) {
