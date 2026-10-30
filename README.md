@@ -1,6 +1,6 @@
 # Little Lasagna and Big Pancake
 
-A scroll-driven photo timeline of love and laughs, adapted from the Evans Halshaw Bond Cars interactive timeline.
+A scroll-driven photo timeline of love and laughs
 
 Serve the folder with a static web server:
 
