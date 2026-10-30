@@ -5,7 +5,7 @@
         "subtitle": "It was a good boba tea and a better date",
         "date": "Feb 25, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260307.jpg",
-        "description": "Your boba tea was better then mine - Taro if I'm not mistaken. No photos from that date but this is our first photo together",
+        "description": "Your boba tea was better than mine - Taro, if I'm not mistaken. No photos from that date, but this is our first photo together",
         "colors": {
             "background": "#6A3E3D",
             "accent": "#6BC4CA"
@@ -29,11 +29,11 @@
     },
     {
         "id": "id3",
-        "title": "Cherry Blossons",
-        "subtitle": "The cherry blossons were the second most beautiful thing that day",
+        "title": "Cherry Blossoms",
+        "subtitle": "The cherry blossoms were the second most beautiful thing that day",
         "date": "Mar 28, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260328.jpg",
-        "description": "You were the first one of couse :)",
+        "description": "You were the first one, of course :)",
         "colors": {
             "background": "#333C4D",
             "accent": "#0BF397"
@@ -47,7 +47,7 @@
         "subtitle": "Probably the best meal we cooked this year",
         "date": "Apr 5, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260405.jpg",
-        "description": "Still the best risotto I had my whole life",
+        "description": "Still the best risotto I've had in my whole life",
         "colors": {
             "background": "#0BF397",
             "accent": "#333C4D"
@@ -58,10 +58,10 @@
     {
         "id": "id6",
         "title": "You gave me flowers",
-        "subtitle": "This was the first time someone has given me flowers in my whole life",
+        "subtitle": "This was the first time someone had given me flowers in my whole life",
         "date": "May 26, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260530.jpg",
-        "description": "I still remember how anxious I was to see you for the first time after a month and then you appeared holding flowers, my heart just melted",
+        "description": "I still remember how anxious I was to see you for the first time after a month, and then you appeared holding flowers. My heart just melted",
         "colors": {
             "background": "#944B6E",
             "accent": "#38282C"
@@ -71,7 +71,7 @@
     },
     {
         "id": "id7",
-        "title": "Summer in redmond",
+        "title": "Summer in Redmond",
         "subtitle": "Looking fancy",
         "date": "Jun 15, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260615.jpg",
@@ -86,10 +86,10 @@
     {
         "id": "id8",
         "title": "Seattle Aquarium",
-        "subtitle": "*touches the weird looking sea life*",
+        "subtitle": "*touches the weird-looking sea life*",
         "date": "Jul 4, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260704.jpg",
-        "description": "Remember we were hunting the pikmin?",
+        "description": "Remember when we were hunting the Pikmin?",
         "colors": {
             "background": "#F4D60D",
             "accent": "#2A2B39"
@@ -99,11 +99,11 @@
     },
     {
         "id": "id9",
-        "title": "4th of july",
-        "subtitle": "My first 4th of july",
+        "title": "4th of July",
+        "subtitle": "My first 4th of July",
         "date": "Jul 4, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260705.jpg",
-        "description": "It was great! I love seeing the fireworks with you! The 2h wait to leave the parking lot was not so funny tho",
+        "description": "It was great! I loved seeing the fireworks with you! The 2h wait to leave the parking lot was not so fun tho",
         "colors": {
             "background": "#2A2B39",
             "accent": "#517AC0"
@@ -114,7 +114,7 @@
     {
         "id": "id10",
         "title": "Paddleboarding",
-        "subtitle": "@ marymoor lake",
+        "subtitle": "@ Lake Sammamish",
         "date": "Jul 6, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260706.jpg",
         "description": "You look sooooo good in this photo",
@@ -128,10 +128,10 @@
     {
         "id": "id11",
         "title": "Our little weekend getaway",
-        "subtitle": "that pie was soooo good",
+        "subtitle": "That pie was soooo good",
         "date": "Jul 12, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260712.jpg",
-        "description": "Snohomish was the second most adorable thing in that weekend... guess you know the first one",
+        "description": "Snohomish was the second most adorable thing that weekend... I guess you know the first one",
         "colors": {
             "background": "#BEA1A3",
             "accent": "#8A99C1"
@@ -142,10 +142,10 @@
     {
         "id": "id12",
         "title": "Kirkland stroll",
-        "subtitle": "Your outfit was very fancy and cute this day",
+        "subtitle": "Your outfit was very fancy and cute that day",
         "date": "Jul 20, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260720_1.jpg",
-        "description": "This was the first time we went to the amazing thai place! You choose it and you nailed it",
+        "description": "This was the first time we went to the amazing Thai place! You chose it, and you nailed it",
         "colors": {
             "background": "#8C6872",
             "accent": "#FFD24D"
@@ -159,7 +159,7 @@
         "subtitle": "My face looks horrible in the photo though",
         "date": "Jul 20, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260720_2.jpg",
-        "description": "I still have it hanged in my pin board",
+        "description": "I still have it hanging on my pin board",
         "colors": {
             "background": "#FFD24D",
             "accent": "#161F2E"
@@ -173,7 +173,7 @@
         "subtitle": "I love your smile 🥰",
         "date": "Jul 25, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260725.jpg",
-        "description": "The korean ice shaving thing was soooo good",
+        "description": "The Korean shaved ice thing was soooo good",
         "colors": {
             "background": "#161F2E",
             "accent": "#BD90C6"
@@ -184,10 +184,10 @@
     {
         "id": "id15",
         "title": "LA trip!",
-        "subtitle": "My first time at in-n-out",
+        "subtitle": "My first time at In-N-Out",
         "date": "Aug 1, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260801.jpg",
-        "description": "It was great, but I must say five guys is better",
+        "description": "It was great, but I must say Five Guys is better",
         "colors": {
             "background": "#BD90C6",
             "accent": "#643F4C"
@@ -215,7 +215,7 @@
         "subtitle": "You are my favorite movie star",
         "date": "Aug 2, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260802_2.jpg",
-        "description": "Little lasagna is the star of my life",
+        "description": "Little Lasagna is the star of my life",
         "colors": {
             "background": "#20202F",
             "accent": "#E3CBC3"
@@ -225,11 +225,11 @@
     },
     {
         "id": "id18",
-        "title": "Santa monica pier",
+        "title": "Santa Monica Pier",
         "subtitle": "The lighting was soo good",
         "date": "Aug 3, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260803_1.jpg",
-        "description": "I still cant believe I got the avocado in the faire game haha",
+        "description": "I still can't believe I got the avocado in the fair game haha",
         "colors": {
             "background": "#E3CBC3",
             "accent": "#E05743"
@@ -239,7 +239,7 @@
     },
     {
         "id": "id19",
-        "title": "The galatic empire",
+        "title": "The Galactic Empire",
         "subtitle": "About to be kidnapped",
         "date": "Aug 3, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260803_2.jpg",
@@ -267,11 +267,11 @@
     },
     {
         "id": "id21",
-        "title": "My little lasagna 🥹",
-        "subtitle": "A little lunch in kirkland",
+        "title": "My Little Lasagna 🥹",
+        "subtitle": "A little lunch in Kirkland",
         "date": "Aug 22, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260822.jpg",
-        "description": "This was the restraunt I paid 50 bucks for the fish. It was good though",
+        "description": "This was the restaurant where I paid 50 bucks for the fish. It was good, though",
         "colors": {
             "background": "#752A9B",
             "accent": "#4CE391"
@@ -281,7 +281,7 @@
     },
     {
         "id": "id22",
-        "title": "Little lasagna loves sushi",
+        "title": "Little Lasagna loves sushi",
         "subtitle": "Our favorite sushi restaurant",
         "date": "Sep 20, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260920.jpg",
@@ -299,7 +299,7 @@
         "subtitle": "You look very funny here",
         "date": "Sep 25, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260925.jpg",
-        "description": "My little lasagna is always funny ❤️",
+        "description": "My Little Lasagna is always funny ❤️",
         "colors": {
             "background": "#362920",
             "accent": "#E4E2C6"
@@ -310,10 +310,10 @@
     {
         "id": "id24",
         "title": "WhirlyBall",
-        "subtitle": "Honest I still can't believe that's an actual thing",
+        "subtitle": "Honestly, I still can't believe that's an actual thing",
         "date": "Sep 26, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20260926.jpg",
-        "description": "I guess seattle can say it has its own sport",
+        "description": "I guess Seattle can say it has its own sport",
         "colors": {
             "background": "#E4E2C6",
             "accent": "#42D987"
@@ -324,7 +324,7 @@
     {
         "id": "id25",
         "title": "My birthday!",
-        "subtitle": "This is the best gift I've ever get 🥹",
+        "subtitle": "This is the best gift I've ever gotten 🥹",
         "date": "Oct 2, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20261002.png",
         "description": "I'll forever cherish this art. You are so talented and my favorite artist",
@@ -337,7 +337,7 @@
     },
     {
         "id": "id26",
-        "title": "Mount Rainer",
+        "title": "Mount Rainier",
         "subtitle": "Hiking up the mountain",
         "date": "Oct 11, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20261011.jpg",
@@ -397,7 +397,7 @@
         "subtitle": "This is probably one of the cutest things I've ever done",
         "date": "Oct 25, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20261025_1.jpg",
-        "description": "I loved doing this with you soooo much, I'll forever remember it. Thank you for always doing cute stuff with me",
+        "description": "I loved doing this with you soooo much. I'll forever remember it. Thank you for always doing cute stuff with me",
         "colors": {
             "background": "#0BF397",
             "accent": "#333C4D"
@@ -407,11 +407,11 @@
     },
     {
         "id": "id31",
-        "title": "Brazilian BQQ",
-        "subtitle": "Chana likes her meat red mua mua mua",
+        "title": "Brazilian BBQ",
+        "subtitle": "Chana likes her meat red, mua mua mua",
         "date": "Oct 25, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20261025_2.jpg",
-        "description": "I loved so much to be able to share a bit more of my culture with you",
+        "description": "I loved being able to share a bit more of my culture with you so much",
         "colors": {
             "background": "#302231",
             "accent": "#B65D87"
@@ -425,7 +425,7 @@
         "subtitle": "It's spooky time",
         "date": "Oct 25, 2026",
         "image": "Static/Content/LittleLasagna/little-lasagna-img/timeline-photos/20261025_3.jpg",
-        "description": "Our graveward was so good! You are talented in all art forms",
+        "description": "Our graveyard was so good! You are talented in all art forms",
         "colors": {
             "background": "#944B6E",
             "accent": "#38282C"

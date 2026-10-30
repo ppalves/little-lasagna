@@ -1,13 +1,13 @@
 {
     "id": "letter",
     "navLabel": "A letter for you",
-    "greeting": "Dear Little Lasagna,",
+    "greeting": "For my Little Lasagna,",
     "paragraphs": [
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-        "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
+        "Meeting you was one of the greatest joys of my life! While putting together the photos and texts for this timeline, I realised once again how much I love spending my life with you. You are gorgeous, funny, smart, kind, an amazingly talented artist and, on top of it all, the best girlfriend I could ever wish for.",
+        "Thank you for being a part of my life and bringing so much joy and love to it. Know that I cherish with all my heart every moment we have shared, and I can't wait to experience the many more moments we will have together.",
+        "Thank you for always being understanding and being there for me. I promise I'll always be there for you, no matter what!"
     ],
-    "closing": "With all my love,",
+    "closing": "Happy birthday, my love! Love you VMMMMMMMMV,",
     "signature": "Big Pancake",
     "image": "Static/Content/LittleLasagna/little-lasagna-img/comic-lasagna-pancake.png",
     "imageAlt": "Comic of Little Lasagna and Big Pancake",
