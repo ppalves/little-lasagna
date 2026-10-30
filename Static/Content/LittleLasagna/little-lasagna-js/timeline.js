@@ -47,8 +47,10 @@
         titleHeading: document.querySelector('.custom-title-heading'),
         titleDescription: document.querySelector('.custom-title-description'),
         footer: document.querySelector('.app-footer'),
-        error: document.querySelector('#timeline-error')
+        error: document.querySelector('#timeline-error'),
+        themeColor: document.querySelector('meta[name="theme-color"]')
     };
+    var titleThemeColor = elements.themeColor ? elements.themeColor.content : '';
 
     function clamp(value, minimum, maximum) {
         return Math.min(Math.max(value, minimum), maximum);
@@ -408,6 +410,16 @@
             item.classList.toggle('current', index === page - 1);
         });
         updateUrl(page);
+        updateThemeColor(page);
+    }
+
+    // Phones tint the status and navigation bars from the theme color (and page background), so keep them on the current page's color.
+    function updateThemeColor(page) {
+        if (!elements.themeColor) return;
+        var color = page === 0 ? titleThemeColor : state.scenes[page - 1].style.getPropertyValue('--scene-background').trim();
+        if (!color) return;
+        elements.themeColor.content = color;
+        document.documentElement.style.backgroundColor = color;
     }
 
     function renderTitle(scrollPosition) {
