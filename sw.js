@@ -1,5 +1,5 @@
 // Bump the version when the shell files change so old caches are cleared.
-var CACHE = 'little-lasagna-v1';
+var CACHE = 'little-lasagna-v2';
 var SHELL = [
     './',
     'index.html',
@@ -9,7 +9,7 @@ var SHELL = [
     'Static/Content/LittleLasagna/little-lasagna-js/pwa.js',
     'Static/Content/LittleLasagna/data/little-lasagna-timeline.json',
     'Static/Content/LittleLasagna/data/letter.json',
-    'Static/Content/LittleLasagna/little-lasagna-img/little-lasagna-and-big-pancake.png',
+    'Static/Content/LittleLasagna/little-lasagna-img/couple-angels.png',
     'Static/Content/LittleLasagna/icons/icon-192.png'
 ];
 
