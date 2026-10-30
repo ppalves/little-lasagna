@@ -6,6 +6,10 @@
     var PAGE_HEIGHT = 1000;
     var HOLD_RATIO = 0.3;
     var UNLOCK_RATIO = 0.31;
+    // From this scroll ratio on, the transition finishes by itself instead of following the scroll.
+    var COMPLETE_RATIO = 0.9;
+    var COMPLETE_OFFSET = Math.round((1 - COMPLETE_RATIO) * PAGE_HEIGHT);
+    var COMPLETE_EASING_MS = 90;
     var state = {
         entries: [],
         letter: null,
@@ -15,6 +19,9 @@
         currentPage: -1,
         stageSize: 0,
         frameRequested: false,
+        lastFrameTime: 0,
+        frameDelta: 16,
+        animating: false,
         hasTitle: document.body.dataset.routeMode === 'integrated'
     };
 
@@ -201,7 +208,31 @@
     }
 
     function setMaskSize(mask, progress) {
-        var radius = (state.stageSize / 2) * (1 - transitionProgress(progress));
+        var autoComplete = progress >= COMPLETE_RATIO;
+        var target = autoComplete ? 1 : transitionProgress(progress);
+        var shown = target;
+
+        // Crossing the auto-complete line (either way) eases the circle instead of jumping.
+        if (mask.shownProgress === undefined) {
+            mask.animating = false;
+        } else if (mask.autoComplete !== autoComplete) {
+            mask.animating = true;
+        }
+        mask.autoComplete = autoComplete;
+
+        if (mask.animating) {
+            var step = 1 - Math.exp(-state.frameDelta / COMPLETE_EASING_MS);
+            shown = mask.shownProgress + (target - mask.shownProgress) * step;
+            if (Math.abs(target - shown) < 0.002) {
+                shown = target;
+                mask.animating = false;
+            } else {
+                state.animating = true;
+            }
+        }
+        mask.shownProgress = shown;
+
+        var radius = (state.stageSize / 2) * (1 - shown);
         var circle = 'circle(' + radius.toFixed(1) + 'px at 50% 50%)';
         mask.style.webkitClipPath = circle;
         mask.style.clipPath = circle;
@@ -217,6 +248,8 @@
     }
 
     function pageFromScroll(scrollPosition) {
+        // A page counts as reached once the transition into it auto-completes.
+        scrollPosition += COMPLETE_OFFSET;
         if (state.hasTitle && scrollPosition < PAGE_HEIGHT) return 0;
         var offset = state.hasTitle ? 1 : 0;
         return clamp(Math.floor(scrollPosition / PAGE_HEIGHT) - offset + 1, 1, state.pageCount);
@@ -255,33 +288,54 @@
     function renderScenes(scrollPosition, page) {
         var currentIndex = page === 0 ? 0 : page - 1;
         var lastIndex = state.scenes.length - 1;
+        var previousMask = state.hasTitle ? elements.titleMask : null;
 
         state.scenes.forEach(function (scene, index) {
+            var mask = scene.querySelector('.circle-mask');
+            var previousComplete = !!previousMask && previousMask.shownProgress >= 1;
+            previousMask = mask;
+
             // Keep the previous scene rendered too so its photo stays decoded when scrolling back up.
             var visible = index >= currentIndex - 1 && index <= currentIndex + 1;
             scene.style.display = visible ? 'block' : 'none';
-            if (!visible) return;
+            if (!visible) {
+                mask.shownProgress = undefined;
+                return;
+            }
 
             var localProgress = (scrollPosition - sceneStart(index)) / PAGE_HEIGHT;
             // The final page has nothing beneath it, so it never shrinks away.
-            setMaskSize(scene.querySelector('.circle-mask'), index === lastIndex ? 0 : localProgress);
+            setMaskSize(mask, index === lastIndex ? 0 : localProgress);
 
             var title = scene.querySelector('.name');
             if (!title) return;
-            var infoOpacity = localProgress < 0 ? 0 : titleOpacity(localProgress);
+            // Before its own page starts, a scene shows its text only once the circle above it has closed.
+            var incomingOpacity = previousComplete ? 1 : 0;
+            var infoOpacity = localProgress < 0 ? incomingOpacity : titleOpacity(localProgress);
             title.style.opacity = String(infoOpacity);
             scene.querySelector('.film-title').style.opacity = String(infoOpacity);
-            scene.querySelector('.description').style.opacity = String(descriptionOpacity(localProgress));
+            scene.querySelector('.description').style.opacity = String(localProgress < 0 ? incomingOpacity : descriptionOpacity(localProgress));
         });
     }
 
-    function render() {
+    function render(timestamp) {
         state.frameRequested = false;
+        state.frameDelta = state.lastFrameTime ? clamp(timestamp - state.lastFrameTime, 0, 50) : 16;
+        state.lastFrameTime = timestamp;
+        state.animating = false;
+
         var scrollPosition = window.scrollY || window.pageYOffset;
         var page = pageFromScroll(scrollPosition);
         renderTitle(scrollPosition);
         renderScenes(scrollPosition, page);
         updateCurrentPage(page);
+
+        // Keep drawing while an auto-completing circle is still easing, even if scrolling stopped.
+        if (state.animating) {
+            requestRender();
+        } else {
+            state.lastFrameTime = 0;
+        }
     }
 
     function requestRender() {
