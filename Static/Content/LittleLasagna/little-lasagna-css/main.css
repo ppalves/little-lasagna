@@ -416,6 +416,82 @@ button {
     text-align: center;
 }
 
+.install-hint {
+    position: fixed;
+    z-index: 300;
+    right: 0.75rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    left: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    max-width: 28rem;
+    margin: 0 auto;
+    padding: 0.75rem 0.75rem 0.75rem 0.85rem;
+    border-radius: 18px;
+    color: #161F2E;
+    background: #FFFBF0;
+    box-shadow: 0 12px 32px rgba(22, 31, 46, 0.3);
+    font: 400 0.85rem/1.4 "Merriweather", serif;
+    animation: install-hint-in 0.35s ease-out;
+}
+
+@keyframes install-hint-in {
+    from {
+        opacity: 0;
+        transform: translateY(1rem);
+    }
+}
+
+.install-hint-icon {
+    flex: none;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 12px;
+}
+
+.install-hint-text {
+    flex: 1;
+    margin: 0;
+}
+
+.install-hint-text strong {
+    display: block;
+    font-weight: 700;
+}
+
+.install-hint-share {
+    width: 1.1em;
+    height: 1.1em;
+    margin: 0 0.1em;
+    color: #007AFF;
+    vertical-align: -0.2em;
+}
+
+.install-hint-action,
+.install-hint-close {
+    flex: none;
+    border: 0;
+    font: 700 0.85rem/1 "Merriweather", serif;
+    cursor: pointer;
+}
+
+.install-hint-action {
+    padding: 0.6rem 0.9rem;
+    border-radius: 999px;
+    color: #fff;
+    background: #6A3E3D;
+}
+
+.install-hint-close {
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    color: rgba(22, 31, 46, 0.6);
+    background: transparent;
+    font-size: 1.4rem;
+}
+
 @media (max-width: 959px) {
     .custom-title-page {
         gap: 0.75rem;
